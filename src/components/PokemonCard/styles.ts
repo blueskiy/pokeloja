@@ -28,16 +28,21 @@ export const PokemonContainer = styled.div`
     }
 
     @media(max-width:767px) {
-        flex-basis: 45%;
-        margin: 0 20px 20px 0;
+        flex-basis: 48%;
+        margin: 0 10px 20px 0;
 
         &:nth-child(5n) {
-            margin-right: 20px;
+            margin-right: 10px;
         }
 
         &:nth-child(2n) {
             margin-right: 0;
         }
+
+        &:hover {
+        transform: none;
+        box-shadow: none;
+    }
     }
 `;
 

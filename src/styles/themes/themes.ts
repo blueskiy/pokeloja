@@ -2,7 +2,7 @@ export type ThemeType = typeof water;
 
 export const water = {
     colors: {
-        background: '#46A9FA',
+        background: '#0433ff',
         secundary: '#347EBA'
     },
 }
