@@ -1,4 +1,6 @@
 import Head from 'next/head'
+import { Searchbar } from '../components/SearchBar'
+
 
 export default function Catalog() {
     return (
@@ -7,7 +9,7 @@ export default function Catalog() {
                 <title>Pokéloja | Água</title>
             </Head>
 
-            <h1>Pokémon de Água</h1>
+            <Searchbar />
         </>
     )
 }

@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@types/styled-components": "^5.1.9",
     "axios": "^0.21.1",
     "next": "10.2.3",
     "next-images": "^1.7.0",
