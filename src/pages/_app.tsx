@@ -5,7 +5,7 @@ import { Provider as NextAuthProvider } from 'next-auth/client'
 import { useState } from 'react';
 
 function MyApp({ Component, pageProps }) {
-    const [theme, setTheme] = useState(water)
+    const [theme, setTheme] = useState(dragon)
 
     // const choseTheme = () => {}
 

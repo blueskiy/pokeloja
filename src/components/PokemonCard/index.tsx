@@ -26,8 +26,9 @@ export function PokemonCard(props) {
     const getPokemonType = async () => {
         const getPokemonDescription = await api.get(pokemonId)
         const typesArray = getPokemonDescription.data.types
+        // console.log(typesArray)
 
-        const filteredType = typesArray.map(type => type.type.name === 'water')
+        const filteredType = typesArray.filter(type => type.type.name === 'water')
 
         console.log(filteredType)
         // return filteredType

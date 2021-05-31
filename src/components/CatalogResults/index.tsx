@@ -10,6 +10,7 @@ export function CatalogResults({ cards }: CatalogResultsProps) {
         <CatalogContainer>
 
             {cards.map((pokemon, i) => {
+                // console.log('o cara', pokemon)
                 return (<PokemonCard key={i} {...pokemon} />)
             })}
 

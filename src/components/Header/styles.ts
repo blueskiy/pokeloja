@@ -57,6 +57,11 @@ export const Container = styled.div`
                 margin-right: 10px;
             }
         }
+
+        > svg {
+            width: 30px;
+            height: auto;
+        }
     }
 
     @media(max-width: 767px) {

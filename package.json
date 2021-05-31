@@ -12,7 +12,6 @@
     "axios": "^0.21.1",
     "next": "10.2.3",
     "next-auth": "^3.24.0",
-    "next-images": "^1.7.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-modal": "^3.13.1",
