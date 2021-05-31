@@ -7,18 +7,21 @@ export function Searchbar() {
 
     return (
         <Container>
-            <h1>Pokéloja | Água</h1>
+            <div>
+                <h1>Pokéloja | <span>Água</span></h1>
 
-            <input
-                type="text"
-                placeholder="busque aqui seu pokemon"
-            />
+                <input
+                    type="text"
+                    placeholder="busque aqui seu pokemon"
+                />
 
-            <span>
-                {session ? `Bem-vindo, ${session.user.name}` : 'Bem-vindo, treinador!'}
-            </span>
+                <span>
+                    {session ? <img src={session.user.image} alt="profile image" /> : ''}
+                    {session ? `Bem-vindo, ${session.user.name}` : 'Bem-vindo, treinador!'}
+                </span>
 
-            <SignInButton />
+                <SignInButton />
+            </div>
         </Container>
     )
 }

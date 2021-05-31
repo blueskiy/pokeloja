@@ -7,6 +7,7 @@ export const CatalogContainer = styled.main`
 
     width: 92vw;
     margin: 0 auto;
+    max-width: 1260px;
 
     @media(max-width:767px) {
         width: 97vw;

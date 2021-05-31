@@ -7,6 +7,7 @@ export const PokemonContainer = styled.div`
     justify-content: flex-start;
 
     height: 330px;
+    max-width: 227px;
     cursor: pointer;
     flex-basis: 18%;
     position: relative;
