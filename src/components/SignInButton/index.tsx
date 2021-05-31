@@ -3,7 +3,6 @@ import { SignInButtonStyled } from './styles'
 
 export function SignInButton() {
     const [session] = useSession()
-    console.log(session)
 
     return session ? (
         <SignInButtonStyled

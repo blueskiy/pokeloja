@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { Pokeball } from '../components/Pokeball'
 import { FlexContainerColumn, FlexContainerRow } from '../styles/pages/home'
 
-export default function OnBoarding() {
+export default function OnBoarding(props) {
   function log() {
     console.log('o que eu quero')
   }
@@ -19,14 +19,17 @@ export default function OnBoarding() {
 
           <Pokeball
             onClick={log}
+            name="water"
           />
 
           <Pokeball
             onClick={log}
+            name="fire"
           />
 
           <Pokeball
             onClick={log}
+            name="dragon"
           />
 
         </FlexContainerRow>

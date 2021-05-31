@@ -2,7 +2,7 @@ import { useSession } from 'next-auth/client'
 import { SignInButton } from '../SignInButton'
 import { Container } from './styles'
 
-export function Searchbar() {
+export function Header() {
     const [session] = useSession()
 
     return (

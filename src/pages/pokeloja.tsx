@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { getSession } from 'next-auth/client'
 
 import { api } from '../services/api'
-import { Searchbar } from '../components/SearchBar'
+import { Header } from '../components/Header'
 import { CatalogResults } from '../components/CatalogResults'
 
 export async function getServerSideProps(ctx) {
@@ -28,7 +28,7 @@ export default function Catalog() {
                 <title>Pokéloja | Água</title>
             </Head>
 
-            <Searchbar />
+            <Header />
 
             <CatalogResults cards={pokemonCards} />
         </>

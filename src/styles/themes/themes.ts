@@ -2,21 +2,21 @@ export type ThemeType = typeof water;
 
 export const water = {
     colors: {
-        background: '#0433ff',
-        secundary: '#347EBA'
+        primary: '#0433ff',
+        secundary: '#76b2ff'
     },
 }
 
 export const fire: ThemeType = {
     colors: {
-        background: '#e60014',
+        primary: '#e60014',
         secundary: '#fad70a'
     },
 }
 
 export const dragon: ThemeType = {
     colors: {
-        background: '#4D1D78',
+        primary: '#4D1D78',
         secundary: '#d25aba'
     },
 }

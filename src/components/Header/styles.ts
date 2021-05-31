@@ -8,7 +8,7 @@ export const Container = styled.div`
     height: 100px;
     padding: 12px 4.4rem;
     margin-bottom: 20px;
-    background-color: ${props => props.theme.colors.background};
+    background-color: ${props => props.theme.colors.primary};
 
     > div {
         display: flex;
@@ -23,7 +23,7 @@ export const Container = styled.div`
             color: #FFF;
 
             span {
-                color: #76b2ff;
+                color: ${props => props.theme.colors.secundary};
             }
         }
 
