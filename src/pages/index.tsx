@@ -1,11 +1,15 @@
 import Head from 'next/head'
+import Link from 'next/link'
+import { useContext } from 'react'
+
+import { water, fire, dragon } from '../styles/themes/themes';
 import { Pokeball } from '../components/Pokeball'
 import { FlexContainerColumn, FlexContainerRow } from '../styles/pages/home'
 
-export default function OnBoarding(props) {
-  function log() {
-    console.log('o que eu quero')
-  }
+import { ThemeContext } from '../contexts/ThemeContext'
+
+export default function OnBoarding() {
+  const { setTheme } = useContext(ThemeContext)
 
   return (
     <>
@@ -17,20 +21,23 @@ export default function OnBoarding(props) {
         <h1>Escolha sua Pokéloja</h1>
         <FlexContainerRow>
 
-          <Pokeball
-            onClick={log}
-            name="water"
-          />
+          <Link href="/pokeloja">
+            <Pokeball
+              onClick={setTheme(water)}
+            />
+          </Link>
 
-          <Pokeball
-            onClick={log}
-            name="fire"
-          />
+          <Link href="/pokeloja">
+            <Pokeball
+              onClick={setTheme(fire)}
+            />
+          </Link>
 
-          <Pokeball
-            onClick={log}
-            name="dragon"
-          />
+          <Link href="/pokeloja">
+            <Pokeball
+              onClick={setTheme(dragon)}
+            />
+          </Link>
 
         </FlexContainerRow>
       </FlexContainerColumn>

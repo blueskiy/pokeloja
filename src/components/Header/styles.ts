@@ -6,9 +6,24 @@ export const Container = styled.div`
     justify-content: center;
 
     height: 100px;
+    position: relative;
     padding: 12px 4.4rem;
     margin-bottom: 20px;
     background-color: ${props => props.theme.colors.primary};
+
+    > a {
+        font-size: smaller;
+        position: absolute;
+        left: 4.4rem;
+        bottom: 2px;
+        color: #FFF;
+        transition: color 50ms ease-in-out;
+        text-decoration: none;
+
+        &:hover {
+            color: ${props => props.theme.colors.secundary};
+        }
+    }
 
     > div {
         display: flex;

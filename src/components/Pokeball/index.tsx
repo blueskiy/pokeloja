@@ -1,14 +1,14 @@
+import React from 'react'
 import { PokeballButton, PokeballStyle } from './styles'
 
 interface PokeballProps {
     onClick: () => void;
-    name: string;
 }
 
-export function Pokeball({ onClick }: PokeballProps) {
+export const Pokeball = React.forwardRef(({ onClick }: PokeballProps, ref) => {
     return (
         <PokeballStyle onClick={onClick}>
             <PokeballButton />
         </PokeballStyle>
     )
-}
+})

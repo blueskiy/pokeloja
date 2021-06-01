@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { useSession } from 'next-auth/client'
 import { SignInButton } from '../SignInButton'
 import { Container } from './styles'
@@ -22,6 +23,10 @@ export function Header() {
 
                 <SignInButton />
             </div>
+
+            <Link href="/">
+                <a>Home</a>
+            </Link>
         </Container>
     )
 }
