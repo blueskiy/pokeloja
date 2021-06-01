@@ -12,6 +12,8 @@ function MyApp({ Component, pageProps }) {
 
     const toggleTheme = (theme) => () => {
         setTheme(theme)
+
+        localStorage.setItem('tema', JSON.stringify(theme))
     }
 
     return (

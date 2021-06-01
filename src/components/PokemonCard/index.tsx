@@ -24,7 +24,6 @@ export function PokemonCard({ name, url }: PokemonCardProps) {
 
     return (
         <PokemonContainer>
-
             <PokemonImage >
                 <Image
                     src={getPokemonImage()}
@@ -32,20 +31,17 @@ export function PokemonCard({ name, url }: PokemonCardProps) {
                     height={200}
                     alt={name}
                     unoptimized
-                    // onError={this.src='imagefound.gif'}
-                    // loading="lazy"
+                // onError={pegar imagem da pokeapis}
+                // loading="lazy"
                 />
             </PokemonImage>
-
             <PokemonInfo>
                 <p>{nameCapitalized}</p>
                 <span>R$100,00</span>
             </PokemonInfo>
-
             <AddToCartButton >
                 ADD+
             </AddToCartButton>
-
         </PokemonContainer>
     )
 }

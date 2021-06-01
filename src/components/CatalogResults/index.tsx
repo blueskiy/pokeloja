@@ -13,7 +13,6 @@ interface CatalogResultsProps {
 export function CatalogResults({ cards }: CatalogResultsProps) {
     return (
         <CatalogContainer>
-
             {cards.map((pokemon, i) => {
                 return (
                     <PokemonCard
@@ -22,7 +21,6 @@ export function CatalogResults({ cards }: CatalogResultsProps) {
                         url={pokemon.pokemon.url}
                     />)
             })}
-
         </CatalogContainer>
     )
 }

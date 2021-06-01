@@ -15,18 +15,18 @@ export async function getServerSideProps(ctx) {
 
 export default function Catalog() {
     const [pokemonCards, setPokemonCards] = useState([])
-    const { theme } = useContext(MyThemeContext)
+    const { theme, toggleTheme } = useContext(MyThemeContext)
 
     const requestByType = () => {
-        if (theme.title === 'water') {
+        if (theme.title === 'Água') {
             return '11'
         }
 
-        if (theme.title === 'fire') {
+        if (theme.title === 'Fogo') {
             return '10'
         }
 
-        if (theme.title === 'dragon') {
+        if (theme.title === 'Dragão') {
             return '16'
         }
     }
@@ -37,16 +37,18 @@ export default function Catalog() {
                 const { pokemon } = response.data
                 setPokemonCards(pokemon)
             })
+
+        const storagedTheme = JSON.parse(localStorage.getItem('tema'))
+        console.log(storagedTheme)
+        // toggleTheme(storagedTheme)
     }, [])
 
     return (
         <>
             <Head>
-                <title>Pokéloja | Água</title>
+                <title>Pokéloja | {theme.title}</title>
             </Head>
-
             <Header />
-
             <CatalogResults cards={pokemonCards} />
         </>
     )
