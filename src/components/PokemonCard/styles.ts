@@ -29,6 +29,7 @@ export const PokemonContainer = styled.div`
     }
 
     @media(max-width:767px) {
+        height: 295px;
         flex-basis: 48%;
         margin: 0 10px 20px 0;
 
@@ -41,9 +42,9 @@ export const PokemonContainer = styled.div`
         }
 
         &:hover {
-        transform: none;
-        box-shadow: none;
-    }
+            transform: none;
+            box-shadow: none;
+        }
     }
 `;
 

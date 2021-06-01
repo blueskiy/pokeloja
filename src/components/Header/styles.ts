@@ -65,13 +65,18 @@ export const Container = styled.div`
     }
 
     @media(max-width: 767px) {
+        height: 115px;
+        padding: 12px 1.1rem;
+
         > div {
+            padding: 12px 0;
             align-items: flex-start;
 
             height: 115px;
 
             h1 {
                 font-size: 21px;
+                padding-top: 5px;
             }
 
             input {
@@ -82,8 +87,14 @@ export const Container = styled.div`
                 width: 93vw;
             }
 
-            span {
-                display: none;
+            > span {
+                font-size: 0;
+                position: absolute;
+                right: 6rem;
+
+                img {
+                    width: 43px;
+                }
             }
         }
     }

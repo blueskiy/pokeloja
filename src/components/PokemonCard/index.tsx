@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Image from 'next/image'
 import { api } from '../../services/api'
 import {
     PokemonContainer,
@@ -7,15 +8,15 @@ import {
     AddToCartButton
 } from "./styles";
 
-// interface PokemonCardProps {
-//     name: string;
-//     url: string;
-// }
+interface PokemonCardProps {
+    key: number;
+    name: string;
+    url: string;
+}
 
-export function PokemonCard(props) {
-    // const [loading, setLoading] = useState(true)
-    const pokemonId = props.url.split('/')[6]
-    const nameCapitalized = props.name.charAt(0).toUpperCase() + props.name.slice(1)
+export function PokemonCard({ name, url }: PokemonCardProps) {
+    const pokemonId = url.split('/')[6]
+    const nameCapitalized = name.charAt(0).toUpperCase() + name.slice(1)
 
     function getPokemonImage() {
         const imageURL = 'https://pokeres.bastionbot.org/images/pokemon/'
@@ -23,24 +24,16 @@ export function PokemonCard(props) {
         return `${imageURL + pokemonId}.png`
     }
 
-    const getPokemonType = async () => {
-        const getPokemonDescription = await api.get(pokemonId)
-        const typesArray = getPokemonDescription.data.types
-        // console.log(typesArray)
-
-        const filteredType = typesArray.filter(type => type.type.name === 'water')
-
-        console.log(filteredType)
-        // return filteredType
-    }
-
-    getPokemonType()
-
     return (
         <PokemonContainer>
 
             <PokemonImage >
-                <img src={getPokemonImage()} alt={props.name} />
+                <Image
+                    src={getPokemonImage()}
+                    width={200}
+                    height={200}
+                    alt={name}
+                />
             </PokemonImage>
 
             <PokemonInfo>

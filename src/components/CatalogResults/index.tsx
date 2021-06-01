@@ -2,7 +2,12 @@ import { PokemonCard } from "../PokemonCard";
 import { CatalogContainer } from "./styles";
 
 interface CatalogResultsProps {
-    cards: Array<Object>;
+    cards: {
+        pokemon: {
+            name: string;
+            url: string
+        }
+    }[];
 }
 
 export function CatalogResults({ cards }: CatalogResultsProps) {
@@ -10,8 +15,12 @@ export function CatalogResults({ cards }: CatalogResultsProps) {
         <CatalogContainer>
 
             {cards.map((pokemon, i) => {
-                // console.log('o cara', pokemon)
-                return (<PokemonCard key={i} {...pokemon} />)
+                return (
+                    <PokemonCard
+                        key={i}
+                        name={pokemon.pokemon.name}
+                        url={pokemon.pokemon.url}
+                    />)
             })}
 
         </CatalogContainer>
