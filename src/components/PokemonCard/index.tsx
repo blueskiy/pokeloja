@@ -32,7 +32,8 @@ export function PokemonCard({ name, url }: PokemonCardProps) {
                     height={200}
                     alt={name}
                     unoptimized
-                // loading="lazy"
+                    // onError={this.src='imagefound.gif'}
+                    // loading="lazy"
                 />
             </PokemonImage>
 

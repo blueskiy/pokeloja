@@ -1,5 +1,10 @@
 import Link from 'next/link'
 import { useSession } from 'next-auth/client'
+
+import { IconContext } from 'react-icons'
+import { GiSchoolBag } from 'react-icons/gi'
+import { BsArrowLeft } from 'react-icons/bs'
+
 import { SignInButton } from '../SignInButton'
 import { Container } from './styles'
 
@@ -17,15 +22,25 @@ export function Header() {
                 />
 
                 <span>
+                    <span className="bag-icon">
+                        <IconContext.Provider value={{ color: "white", size:"30" }}>
+                            <GiSchoolBag />
+                        </IconContext.Provider>
+                    </span>
                     {session ? <img src={session.user.image} alt="profile image" /> : ''}
-                    {session ? `Bem-vindo, ${session.user.name}` : 'Bem-vindo, treinador!'}
+                    {session ? `Olá, ${session.user.name}` : 'Olá, treinador(a)!'}
                 </span>
 
                 <SignInButton />
             </div>
 
             <Link href="/">
-                <a>Home</a>
+                <a>
+                    <IconContext.Provider value={{ color: "white", size:"17" }}>
+                        <BsArrowLeft />
+                    </IconContext.Provider>
+                    Home
+                </a>
             </Link>
         </Container>
     )

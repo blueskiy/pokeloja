@@ -12,13 +12,19 @@ export const Container = styled.div`
     background-color: ${props => props.theme.colors.primary};
 
     > a {
+        display: flex;
+        align-items: center;
         font-size: smaller;
         position: absolute;
         left: 4.4rem;
-        bottom: 2px;
+        bottom: 4px;
         color: #FFF;
         transition: color 50ms ease-in-out;
         text-decoration: none;
+
+        svg {
+            margin-right: 2px;
+        }
 
         &:hover {
             color: ${props => props.theme.colors.secundary};
@@ -55,7 +61,7 @@ export const Container = styled.div`
         }
 
         img {
-            width: 45px;
+            width: 40px;
             height: auto;
             border-radius: 50%;
             border: solid 3px #5ebe9e;
@@ -67,6 +73,14 @@ export const Container = styled.div`
             justify-content: space-between;
 
             color: #FFF;
+
+            .bag-icon {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                margin-right: 10px;
+            }
 
             img {
                 margin-right: 10px;

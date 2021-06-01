@@ -52,7 +52,7 @@ export const PokemonImage = styled.div`
     display: flex;
     justify-content: center;
 
-    margin-bottom: 11px;
+    margin-bottom: 14px;
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.6);
 
@@ -63,6 +63,7 @@ export const PokemonImage = styled.div`
 `
 
 export const PokemonInfo = styled.div`
+    color: #FFF;
     text-align: center;
 `
 
