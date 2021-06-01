@@ -1,28 +1,31 @@
 import { ThemeType } from '../styles/themes/themes';
-import { createContext, useState, ReactNode } from 'react';
-import { water, fire, dragon } from '../styles/themes/themes';
+import { createContext, ReactNode } from 'react';
 
 interface ThemeContextData {
     theme: ThemeType
-    setTheme: ({ }: ThemeType) => void
+    toggleTheme: (ThemeType) => () => void
 }
 
-export const ThemeContext = createContext({} as ThemeContextData)
+export const MyThemeContext = createContext({} as ThemeContextData)
 
 interface ThemeProviderProps {
     children: ReactNode
+    value: {
+        theme: ThemeType
+        toggleTheme: (ThemeType) => () => void
+    }
 }
 
-export function ThemeProvider({ children }: ThemeProviderProps) {
-    const [theme, setTheme] = useState(water)
+export function MyThemeProvider({ children, value }: ThemeProviderProps) {
+    const { theme, toggleTheme } = value
 
     return (
-        <ThemeContext.Provider
+        <MyThemeContext.Provider
             value={{
                 theme,
-                setTheme
+                toggleTheme,
             }}>
             {children}
-        </ThemeContext.Provider>
+        </MyThemeContext.Provider>
     )
 }

@@ -6,14 +6,10 @@ import { water, fire, dragon } from '../styles/themes/themes';
 import { Pokeball } from '../components/Pokeball'
 import { FlexContainerColumn, FlexContainerRow } from '../styles/pages/home'
 
-import { ThemeContext } from '../contexts/ThemeContext'
+import { MyThemeContext } from '../contexts/ThemeContext'
 
 export default function OnBoarding() {
-  const { setTheme } = useContext(ThemeContext)
-
-  function teste() {
-    console.log('kkkkk')
-  }
+  const { toggleTheme } = useContext(MyThemeContext)
 
   return (
     <>
@@ -27,19 +23,19 @@ export default function OnBoarding() {
 
           <Link href="/pokeloja">
             <Pokeball
-              onClick={teste}
+              onClick={toggleTheme(water)}
             />
           </Link>
 
           <Link href="/pokeloja">
             <Pokeball
-              onClick={teste}
+              onClick={toggleTheme(fire)}
             />
           </Link>
 
           <Link href="/pokeloja">
             <Pokeball
-              onClick={teste}
+              onClick={toggleTheme(dragon)}
             />
           </Link>
 
