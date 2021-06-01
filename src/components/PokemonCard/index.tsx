@@ -31,6 +31,8 @@ export function PokemonCard({ name, url }: PokemonCardProps) {
                     width={200}
                     height={200}
                     alt={name}
+                    unoptimized
+                // loading="lazy"
                 />
             </PokemonImage>
 

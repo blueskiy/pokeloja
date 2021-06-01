@@ -4,7 +4,7 @@ import { water, fire, dragon } from '../styles/themes/themes';
 
 interface ThemeContextData {
     theme: ThemeType
-    setTheme: ({ }) => void
+    setTheme: ({ }: ThemeType) => void
 }
 
 export const ThemeContext = createContext({} as ThemeContextData)

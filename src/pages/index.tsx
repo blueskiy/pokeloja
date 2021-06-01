@@ -11,6 +11,10 @@ import { ThemeContext } from '../contexts/ThemeContext'
 export default function OnBoarding() {
   const { setTheme } = useContext(ThemeContext)
 
+  function teste() {
+    console.log('kkkkk')
+  }
+
   return (
     <>
       <Head>
@@ -23,19 +27,19 @@ export default function OnBoarding() {
 
           <Link href="/pokeloja">
             <Pokeball
-              onClick={setTheme(water)}
+              onClick={teste}
             />
           </Link>
 
           <Link href="/pokeloja">
             <Pokeball
-              onClick={setTheme(fire)}
+              onClick={teste}
             />
           </Link>
 
           <Link href="/pokeloja">
             <Pokeball
-              onClick={setTheme(dragon)}
+              onClick={teste}
             />
           </Link>
 
