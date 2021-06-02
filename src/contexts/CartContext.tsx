@@ -84,22 +84,14 @@ export default function CartProvider({ children }: CartProviderProps): JSX.Eleme
     };
 
     const removePokemon = (pokemonId: number) => {
-        try {
-            // TODO
-        } catch {
-            // TODO
-        }
+
     };
 
     const updatePokemonAmount = ({
         pokemonId,
         amount,
     }: UpdatePokemonAmount) => {
-        try {
-            // TODO
-        } catch {
-            // TODO
-        }
+
     };
 
     return (
