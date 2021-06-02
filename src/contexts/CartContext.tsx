@@ -59,16 +59,17 @@ export default function CartProvider({ children }: CartProviderProps): JSX.Eleme
             return pokemon.id === pokemonId
         })
 
-        // console.log('que', pokemonExists)
-
         const currentAmount = pokemonExists ? pokemonExists.amount : 0
         const amount = currentAmount + 1
 
         if (pokemonExists) {
             pokemonExists.amount = amount
         } else {
+            const storeType = localStorage.getItem('@Pokeloja:type')
+
             const newPokemon = {
                 id: pokemonId,
+                storeId: `${storeType}_${pokemonId}`,
                 name: pokemonName,
                 price: 100,
                 image: '',

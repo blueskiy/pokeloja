@@ -15,18 +15,21 @@ export async function getServerSideProps(ctx) {
 
 export default function Catalog() {
     const [pokemonCards, setPokemonCards] = useState([])
-    const { theme, toggleTheme } = useContext(MyThemeContext)
+    const { theme } = useContext(MyThemeContext)
 
     const requestByType = () => {
         if (theme.title === 'Água') {
+            localStorage.setItem('@Pokeloja:type', 'AGUA')
             return '11'
         }
 
         if (theme.title === 'Fogo') {
+            localStorage.setItem('@Pokeloja:type', 'FOGO')
             return '10'
         }
 
         if (theme.title === 'Dragão') {
+            localStorage.setItem('@Pokeloja:type', 'DRAGAO')
             return '16'
         }
     }
@@ -38,10 +41,6 @@ export default function Catalog() {
                 setPokemonCards(pokemon)
 
                 localStorage.setItem('@Pokemon:list', JSON.stringify(pokemon))
-
-                pokemon.forEach((pokemon) => {
-                    // console.log(pokemon.pokemon.name)
-                })
             })
 
         const storagedTheme = JSON.parse(localStorage.getItem('tema'))

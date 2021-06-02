@@ -7,10 +7,11 @@ import { MyThemeContext } from '../../contexts/ThemeContext'
 
 // import { setCookie } from 'nookies'
 
+import { Cart } from '../Cart/index'
+
 import { IconContext } from 'react-icons'
 import { GiSchoolBag } from 'react-icons/gi'
 import { BsArrowLeft } from 'react-icons/bs'
-import { MdClose } from 'react-icons/md'
 
 import { Container } from './styles'
 import { SignInButton } from '../SignInButton'
@@ -23,9 +24,13 @@ export function Header() {
     const cartSize = cart.length
 
     const [isCartOpen, setIsCartOpen] = useState(false)
-    const toggleCart = () => setIsCartOpen(!isCartOpen)
+    const [uniquePokemonAmount, setUniquePokemonAmount] = useState([])
 
-    // const pokemonAmount = JSON.parse(localStorage.getItem('@Pokemon:cart'))
+    const toggleCart = () => {
+        setIsCartOpen(!isCartOpen)
+        setUniquePokemonAmount(JSON.parse(localStorage.getItem('@Pokeloja:cart')))
+        console.log('esse cara aqui', uniquePokemonAmount)
+    }
 
     return (
         <Container>
@@ -62,21 +67,11 @@ export function Header() {
                 </a>
             </Link>
 
-            <div className={isCartOpen ? 'cart active' : 'cart'}>
-                <MdClose
-                    onClick={toggleCart}
-                    size="30"
-                    color="black"
-                />
-                <span className="cart-title">CARRINHO</span>
-                <div className="cart-content">
-                    {/* {pokemonAmount.map((pokemon) => {
-                        return (
-                            <li>item.name</li>
-                        )
-                    })} */}
-                </div>
-            </div>
+            <Cart
+                toggleCart={toggleCart}
+                isCartOpen={isCartOpen}
+                uniquePokemonAmount={uniquePokemonAmount}
+            />
         </Container>
     )
 }
