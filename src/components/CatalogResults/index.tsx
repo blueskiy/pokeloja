@@ -4,7 +4,7 @@ import { CatalogContainer } from "./styles";
 interface CatalogResultsProps {
     cards: {
         pokemon: {
-            name: string;
+            name: string
             url: string
         }
     }[];

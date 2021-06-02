@@ -7,6 +7,7 @@ import { MyThemeContext } from '../contexts/ThemeContext'
 import { api } from '../services/api'
 import { Header } from '../components/Header'
 import { CatalogResults } from '../components/CatalogResults'
+import { getStoragedItem, setItemOnLocalStorage } from '../helpers/storage'
 
 export async function getServerSideProps(ctx) {
     const session = await getSession(ctx)
@@ -19,17 +20,17 @@ export default function Catalog() {
 
     const requestByType = () => {
         if (theme.title === 'Água') {
-            localStorage.setItem('@Pokeloja:type', 'AGUA')
+            setItemOnLocalStorage('@Pokeloja:type', 'AGUA')
             return '11'
         }
 
         if (theme.title === 'Fogo') {
-            localStorage.setItem('@Pokeloja:type', 'FOGO')
+            setItemOnLocalStorage('@Pokeloja:type', 'FOGO')
             return '10'
         }
 
         if (theme.title === 'Dragão') {
-            localStorage.setItem('@Pokeloja:type', 'DRAGAO')
+            setItemOnLocalStorage('@Pokeloja:type', 'DRAGAO')
             return '16'
         }
     }
@@ -43,7 +44,7 @@ export default function Catalog() {
                 localStorage.setItem('@Pokemon:list', JSON.stringify(pokemon))
             })
 
-        const storagedTheme = JSON.parse(localStorage.getItem('tema'))
+        const storagedTheme = JSON.parse(getStoragedItem('tema'))
     }, [])
 
     return (

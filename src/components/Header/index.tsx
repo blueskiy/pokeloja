@@ -4,6 +4,7 @@ import { useSession } from 'next-auth/client'
 import { useState, useEffect, useContext } from 'react'
 import { useCart } from '../../contexts/CartContext'
 import { MyThemeContext } from '../../contexts/ThemeContext'
+import { getStoragedItem } from '../../helpers/storage'
 
 // import { setCookie } from 'nookies'
 
@@ -28,7 +29,7 @@ export function Header() {
 
     const toggleCart = () => {
         setIsCartOpen(!isCartOpen)
-        setUniquePokemonAmount(JSON.parse(localStorage.getItem('@Pokeloja:cart')))
+        setUniquePokemonAmount(JSON.parse(getStoragedItem('@Pokeloja:cart')))
         console.log('esse cara aqui', uniquePokemonAmount)
     }
 
@@ -49,9 +50,11 @@ export function Header() {
                                 size="30"
                             />
                         </IconContext.Provider>
-                        <span className="pokemon-count">
-                            {true ? `${cartSize}` : ''}
-                        </span>
+                        {cartSize > 0 ?
+                            <span className="pokemon-count">
+                                {cartSize}
+                            </span> : ''
+                        }
                     </span>
                     {session ? <img src={session.user.image} alt="profile image" /> : ''}
                     {session ? `Olá, ${session.user.name}` : 'Olá, treinador(a)!'}
@@ -70,7 +73,7 @@ export function Header() {
             <Cart
                 toggleCart={toggleCart}
                 isCartOpen={isCartOpen}
-                uniquePokemonAmount={uniquePokemonAmount}
+                cart={cart}
             />
         </Container>
     )

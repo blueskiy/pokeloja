@@ -1,4 +1,6 @@
 import { createContext, ReactNode, useContext, useState } from 'react';
+import { getStoragedItem, setItemOnLocalStorage } from '../helpers/storage';
+import { Pokemon } from '../interfaces/interfaces';
 import { api } from '../services/api'
 
 interface CartProviderProps {
@@ -10,17 +12,9 @@ interface UpdatePokemonAmount {
     amount: number;
 }
 
-interface Pokemon {
-    id: number
-    name: string
-    price: number
-    image: string
-    amount: number
-}
-
 interface CartContextData {
     cart: Pokemon[];
-    addPokemon: (pokemonId: number) => void;
+    addPokemon: (pokemonId: number, storeId: string) => void;
     removePokemon: (pokemonId: number) => void;
     updatePokemonAmount: ({ pokemonId, amount }: UpdatePokemonAmount) => void;
 }
@@ -29,7 +23,7 @@ const CartContext = createContext<CartContextData>({} as CartContextData);
 
 export default function CartProvider({ children }: CartProviderProps): JSX.Element {
     const [cart, setCart] = useState<Pokemon[]>(() => {
-        const storagedCart = localStorage.getItem('@Pokeloja:cart')
+        const storagedCart = getStoragedItem('@Pokeloja:cart')
 
         if (storagedCart) {
             return JSON.parse(storagedCart);
@@ -38,14 +32,14 @@ export default function CartProvider({ children }: CartProviderProps): JSX.Eleme
         return [];
     });
 
-    const addPokemon = (pokemonId: number) => {
-        const pokemonList = JSON.parse(localStorage.getItem('@Pokemon:list'))
-        const pokemonListRs = pokemonList.find((pokemon, index) => {
+    const addPokemon = (pokemonId: number, storeId: string) => {
+        const pokemonList = JSON.parse(getStoragedItem('@Pokemon:list'))
+        const findPokemon = pokemonList.find((pokemon, index) => {
             return index === pokemonId
         })
 
-        const pokemonName = pokemonListRs.pokemon.name
-        const pokemonURL = pokemonListRs.pokemon.url
+        const pokemonName = findPokemon.pokemon.name
+        // const pokemonURL = pokemonListRs.pokemon.url
 
         // const pokemonImage = async () => {
         //     const getPokemon = await api.get(`${pokemonURL.substring(25)}`)
@@ -55,21 +49,21 @@ export default function CartProvider({ children }: CartProviderProps): JSX.Eleme
         // }
 
         const updatedCart = [...cart]
-        const pokemonExists = updatedCart.find((pokemon) => {
-            return pokemon.id === pokemonId
+        const pokemonExistsOnCart = updatedCart.find((pokemon) => {
+            return pokemon.storeId === storeId
         })
 
-        const currentAmount = pokemonExists ? pokemonExists.amount : 0
+        const currentAmount = pokemonExistsOnCart ? pokemonExistsOnCart.amount : 0
         const amount = currentAmount + 1
 
-        if (pokemonExists) {
-            pokemonExists.amount = amount
+        if (pokemonExistsOnCart) {
+            pokemonExistsOnCart.amount = amount
         } else {
-            const storeType = localStorage.getItem('@Pokeloja:type')
+            // const storeType = getStoragedItem('@Pokeloja:type')
 
             const newPokemon = {
                 id: pokemonId,
-                storeId: `${storeType}_${pokemonId}`,
+                storeId: storeId,
                 name: pokemonName,
                 price: 100,
                 image: '',
@@ -80,7 +74,7 @@ export default function CartProvider({ children }: CartProviderProps): JSX.Eleme
         }
 
         setCart(updatedCart)
-        localStorage.setItem('@Pokeloja:cart', JSON.stringify(updatedCart))
+        setItemOnLocalStorage('@Pokeloja:cart', JSON.stringify(updatedCart))
     };
 
     const removePokemon = (pokemonId: number) => {

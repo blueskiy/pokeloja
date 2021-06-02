@@ -7,6 +7,7 @@ import { ThemeProvider } from 'styled-components';
 import { water, fire, dragon } from '../styles/themes/themes';
 
 import { MyThemeProvider } from '../contexts/ThemeContext'
+import { setItemOnLocalStorage } from '../helpers/storage';
 
 const CartProvider = dynamic(
     () => import('../contexts/CartContext'),
@@ -19,20 +20,20 @@ function MyApp({ Component, pageProps }) {
     const toggleTheme = (theme) => () => {
         setTheme(theme)
 
-        localStorage.setItem('tema', JSON.stringify(theme))
+        setItemOnLocalStorage('tema', JSON.stringify(theme))
     }
 
     return (
-        <CartProvider>
-            <NextAuthProvider session={pageProps.session}>
-                <MyThemeProvider value={{ theme, toggleTheme }}>
-                    <ThemeProvider theme={theme}>
+        <NextAuthProvider session={pageProps.session}>
+            <MyThemeProvider value={{ theme, toggleTheme }}>
+                <ThemeProvider theme={theme}>
+                    <CartProvider>
                         <Component {...pageProps} />
                         <GlobalStyle />
-                    </ThemeProvider>
-                </MyThemeProvider>
-            </NextAuthProvider>
-        </CartProvider>
+                    </CartProvider>
+                </ThemeProvider>
+            </MyThemeProvider>
+        </NextAuthProvider>
     )
 }
 

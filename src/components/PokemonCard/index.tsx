@@ -7,6 +7,7 @@ import {
 } from "./styles";
 
 import { useCart } from '../../contexts/CartContext'
+import { getStoragedItem } from '../../helpers/storage';
 
 interface PokemonCardProps {
     id: number
@@ -15,12 +16,10 @@ interface PokemonCardProps {
 }
 
 export function PokemonCard({ id, name, url }: PokemonCardProps) {
-    const { addPokemon, cart } = useCart()
+    const { addPokemon } = useCart()
 
     const pokemonId = url.split('/')[6]
     const nameCapitalized = name.charAt(0).toUpperCase() + name.slice(1)
-
-    // console.log(id)
 
     function getPokemonImage() {
         const imageURL = 'https://pokeres.bastionbot.org/images/pokemon/'
@@ -29,7 +28,10 @@ export function PokemonCard({ id, name, url }: PokemonCardProps) {
     }
 
     function handleAddPokemon(id: number) {
-        addPokemon(id)
+        const storeType = getStoragedItem('@Pokeloja:type')
+        const storeId = `${storeType}_${id}`
+
+        addPokemon(id, storeId)
     }
 
     return (
@@ -42,7 +44,6 @@ export function PokemonCard({ id, name, url }: PokemonCardProps) {
                     alt={name}
                     unoptimized
                 // onError={pegar imagem da pokeapis}
-                // loading="lazy"
                 />
             </PokemonImage>
             <PokemonInfo>
