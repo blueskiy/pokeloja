@@ -12,6 +12,7 @@
     "axios": "^0.21.1",
     "next": "10.2.3",
     "next-auth": "^3.24.0",
+    "nookies": "^2.5.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-icons": "^4.2.0",

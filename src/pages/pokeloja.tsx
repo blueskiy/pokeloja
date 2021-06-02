@@ -45,8 +45,6 @@ export default function Catalog() {
             })
 
         const storagedTheme = JSON.parse(localStorage.getItem('tema'))
-        // console.log(storagedTheme)
-        // toggleTheme(storagedTheme)
     }, [])
 
     return (

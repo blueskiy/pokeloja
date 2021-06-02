@@ -31,7 +31,7 @@ export const Container = styled.div`
         }
     }
 
-    > div {
+    .header-main-content {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -116,6 +116,38 @@ export const Container = styled.div`
         > svg {
             width: 30px;
             height: auto;
+        }
+    }
+
+    .cart {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        width: 35vw;
+        height: 100vh;
+        position: fixed;
+        padding: 10px;
+        top: 0;
+        right: -35vw;
+        z-index: 2;
+        transition: right 500ms ease-in-out;
+        background-color: #FFF;
+
+        &.active {
+            right: 0;
+        }
+
+        svg {
+            cursor: pointer;
+            position: absolute;
+            top: 8px;
+            right: 8px;
+        }
+
+        .cart-title {
+            font-size: 20px;
+            font-weight: bold;
         }
     }
 

@@ -1,13 +1,16 @@
 import Link from 'next/link'
 import { useSession } from 'next-auth/client'
 
-import { useContext } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { useCart } from '../../contexts/CartContext'
 import { MyThemeContext } from '../../contexts/ThemeContext'
+
+// import { setCookie } from 'nookies'
 
 import { IconContext } from 'react-icons'
 import { GiSchoolBag } from 'react-icons/gi'
 import { BsArrowLeft } from 'react-icons/bs'
+import { MdClose } from 'react-icons/md'
 
 import { Container } from './styles'
 import { SignInButton } from '../SignInButton'
@@ -15,12 +18,18 @@ import { SignInButton } from '../SignInButton'
 export function Header() {
     const [session] = useSession()
     const { theme } = useContext(MyThemeContext)
+
     const { cart } = useCart()
     const cartSize = cart.length
 
+    const [isCartOpen, setIsCartOpen] = useState(false)
+    const toggleCart = () => setIsCartOpen(!isCartOpen)
+
+    // const pokemonAmount = JSON.parse(localStorage.getItem('@Pokemon:cart'))
+
     return (
         <Container>
-            <div>
+            <div className="header-main-content">
                 <h1>Pokéloja | <span>{theme.title}</span></h1>
                 <input
                     type="text"
@@ -29,7 +38,11 @@ export function Header() {
                 <span>
                     <span className="bag-icon">
                         <IconContext.Provider value={{}}>
-                            <GiSchoolBag color="white" size="30" />
+                            <GiSchoolBag
+                                onClick={toggleCart}
+                                color="white"
+                                size="30"
+                            />
                         </IconContext.Provider>
                         <span className="pokemon-count">
                             {true ? `${cartSize}` : ''}
@@ -48,6 +61,22 @@ export function Header() {
                     Home
                 </a>
             </Link>
+
+            <div className={isCartOpen ? 'cart active' : 'cart'}>
+                <MdClose
+                    onClick={toggleCart}
+                    size="30"
+                    color="black"
+                />
+                <span className="cart-title">CARRINHO</span>
+                <div className="cart-content">
+                    {/* {pokemonAmount.map((pokemon) => {
+                        return (
+                            <li>item.name</li>
+                        )
+                    })} */}
+                </div>
+            </div>
         </Container>
     )
 }
