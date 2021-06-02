@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { useSession } from 'next-auth/client'
 
 import { useContext } from 'react'
+import { useCart } from '../../contexts/CartContext'
 import { MyThemeContext } from '../../contexts/ThemeContext'
 
 import { IconContext } from 'react-icons'
@@ -14,6 +15,8 @@ import { SignInButton } from '../SignInButton'
 export function Header() {
     const [session] = useSession()
     const { theme } = useContext(MyThemeContext)
+    const { cart } = useCart()
+    const cartSize = cart.length
 
     return (
         <Container>
@@ -29,7 +32,7 @@ export function Header() {
                             <GiSchoolBag color="white" size="30" />
                         </IconContext.Provider>
                         <span className="pokemon-count">
-                            {true ? `${5}` : ''}
+                            {true ? `${cartSize}` : ''}
                         </span>
                     </span>
                     {session ? <img src={session.user.image} alt="profile image" /> : ''}

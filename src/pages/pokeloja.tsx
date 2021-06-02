@@ -36,10 +36,16 @@ export default function Catalog() {
             .then(response => {
                 const { pokemon } = response.data
                 setPokemonCards(pokemon)
+
+                localStorage.setItem('@Pokemon:list', JSON.stringify(pokemon))
+
+                pokemon.forEach((pokemon) => {
+                    // console.log(pokemon.pokemon.name)
+                })
             })
 
         const storagedTheme = JSON.parse(localStorage.getItem('tema'))
-        console.log(storagedTheme)
+        // console.log(storagedTheme)
         // toggleTheme(storagedTheme)
     }, [])
 

@@ -6,6 +6,8 @@ import {
     AddToCartButton
 } from "./styles";
 
+import { useCart } from '../../contexts/CartContext'
+
 interface PokemonCardProps {
     id: number
     name: string
@@ -13,15 +15,21 @@ interface PokemonCardProps {
 }
 
 export function PokemonCard({ id, name, url }: PokemonCardProps) {
+    const { addPokemon, cart } = useCart()
+
     const pokemonId = url.split('/')[6]
     const nameCapitalized = name.charAt(0).toUpperCase() + name.slice(1)
 
-    console.log(id)
+    // console.log(id)
 
     function getPokemonImage() {
         const imageURL = 'https://pokeres.bastionbot.org/images/pokemon/'
 
         return `${imageURL + pokemonId}.png`
+    }
+
+    function handleAddPokemon(id: number) {
+        addPokemon(id)
     }
 
     return (
@@ -41,7 +49,10 @@ export function PokemonCard({ id, name, url }: PokemonCardProps) {
                 <p>{nameCapitalized}</p>
                 <span>R$100,00</span>
             </PokemonInfo>
-            <AddToCartButton >
+            <AddToCartButton
+                type="button"
+                onClick={() => handleAddPokemon(id)}
+            >
                 ADD+
             </AddToCartButton>
         </PokemonContainer>

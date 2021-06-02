@@ -20,14 +20,14 @@ interface Pokemon {
 
 interface CartContextData {
     cart: Pokemon[];
-    addPokemon: (pokemonId: number) => Promise<void>;
+    addPokemon: (pokemonId: number) => void;
     removePokemon: (pokemonId: number) => void;
     updatePokemonAmount: ({ pokemonId, amount }: UpdatePokemonAmount) => void;
 }
 
 const CartContext = createContext<CartContextData>({} as CartContextData);
 
-export function CartProvider({ children }: CartProviderProps): JSX.Element {
+export default function CartProvider({ children }: CartProviderProps): JSX.Element {
     const [cart, setCart] = useState<Pokemon[]>(() => {
         const storagedCart = localStorage.getItem('@Pokeloja:cart')
 
@@ -38,9 +38,28 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
         return [];
     });
 
-    const addPokemon = async (pokemonId: number) => {
+    const addPokemon = (pokemonId: number) => {
+        const pokemonList = JSON.parse(localStorage.getItem('@Pokemon:list'))
+        const pokemonListRs = pokemonList.find((pokemon, index) => {
+            return index === pokemonId
+        })
+
+        const pokemonName = pokemonListRs.pokemon.name
+        const pokemonURL = pokemonListRs.pokemon.url
+
+        // const pokemonImage = async () => {
+        //     const getPokemon = await api.get(`${pokemonURL.substring(25)}`)
+        //     const pokemonImageURL = getPokemon.data.sprites.front_default
+
+        //     return pokemonImageURL
+        // }
+
         const updatedCart = [...cart]
-        const pokemonExists = updatedCart.find(pokemon => pokemon.id === pokemonId)
+        const pokemonExists = updatedCart.find((pokemon) => {
+            return pokemon.id === pokemonId
+        })
+
+        // console.log('que', pokemonExists)
 
         const currentAmount = pokemonExists ? pokemonExists.amount : 0
         const amount = currentAmount + 1
@@ -48,11 +67,12 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
         if (pokemonExists) {
             pokemonExists.amount = amount
         } else {
-            const pokemon = await api.get(`/pokemons/${pokemonId}`)
-
             const newPokemon = {
-                ...pokemon.data,
-                amount: 1
+                id: pokemonId,
+                name: pokemonName,
+                price: 100,
+                image: '',
+                amount: amount
             }
 
             updatedCart.push(newPokemon)
@@ -70,7 +90,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
         }
     };
 
-    const updatePokemonAmount = async ({
+    const updatePokemonAmount = ({
         pokemonId,
         amount,
     }: UpdatePokemonAmount) => {
