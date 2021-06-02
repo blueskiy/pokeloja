@@ -28,6 +28,9 @@ export function Header() {
                         <IconContext.Provider value={{}}>
                             <GiSchoolBag color="white" size="30" />
                         </IconContext.Provider>
+                        <span className="pokemon-count">
+                            {true ? `${5}` : ''}
+                        </span>
                     </span>
                     {session ? <img src={session.user.image} alt="profile image" /> : ''}
                     {session ? `Olá, ${session.user.name}` : 'Olá, treinador(a)!'}

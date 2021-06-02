@@ -17,6 +17,7 @@ export function CatalogResults({ cards }: CatalogResultsProps) {
                 return (
                     <PokemonCard
                         key={i}
+                        id={i}
                         name={pokemon.pokemon.name}
                         url={pokemon.pokemon.url}
                     />)

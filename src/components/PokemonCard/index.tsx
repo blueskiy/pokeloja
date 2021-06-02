@@ -7,14 +7,16 @@ import {
 } from "./styles";
 
 interface PokemonCardProps {
-    key: number;
-    name: string;
-    url: string;
+    id: number
+    name: string
+    url: string
 }
 
-export function PokemonCard({ name, url }: PokemonCardProps) {
+export function PokemonCard({ id, name, url }: PokemonCardProps) {
     const pokemonId = url.split('/')[6]
     const nameCapitalized = name.charAt(0).toUpperCase() + name.slice(1)
+
+    console.log(id)
 
     function getPokemonImage() {
         const imageURL = 'https://pokeres.bastionbot.org/images/pokemon/'

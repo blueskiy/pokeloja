@@ -78,8 +78,34 @@ export const Container = styled.div`
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
+                
+                cursor: pointer;
+                margin-right: 15px;
+                position: relative;
+                transition: opacity 100ms ease-in-out;
 
-                margin-right: 10px;
+                &:hover {
+                    opacity: 0.85;
+                }
+
+                .pokemon-count {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    
+                    left: 0;
+                    bottom: -5px;
+                    position: absolute;
+
+                    width: 16px;
+                    height: 16px;
+                    font-size: 10px;
+                    font-weight: bold;
+                    border-radius: 50%;
+                    background-color: #FFF;
+                    color: ${props => props.theme.colors.primary};
+                    border: 1px solid ${props => props.theme.colors.primary};
+                }
             }
 
             img {

@@ -7,9 +7,18 @@ export const FlexContainerRow = styled.div`
 
     width: 615px;
 
-    h1 {
-        display: inline-block;
-        margin-bottom: 20px;
+    .pokeball-container {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: space-between;
+
+        p {
+            font-size: 25px;
+            margin-top: 10px;
+            font-weight: bold;
+            display: inline-block;
+        }
     }
 `;
 
@@ -19,4 +28,15 @@ export const FlexContainerColumn = styled(FlexContainerRow)`
 
     width: 100vw;
     height: 100vh;
+
+    h1 {
+        display: inline-block;
+        margin-bottom: 45px;
+    }
+
+    .profile-home {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+    }
 `;

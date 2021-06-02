@@ -7,6 +7,7 @@ import { Pokeball } from '../components/Pokeball'
 import { FlexContainerColumn, FlexContainerRow } from '../styles/pages/home'
 
 import { MyThemeContext } from '../contexts/ThemeContext'
+import { SignInButton } from '../components/SignInButton';
 
 export default function OnBoarding() {
     const { toggleTheme } = useContext(MyThemeContext)
@@ -18,23 +19,35 @@ export default function OnBoarding() {
             </Head>
 
             <FlexContainerColumn>
+                <div className="profile-home">
+                    <SignInButton />
+                </div>
                 <h1>Escolha sua Pokéloja</h1>
                 <FlexContainerRow>
-                    <Link href="/pokeloja">
-                        <Pokeball
-                            onClick={toggleTheme(water)}
-                        />
-                    </Link>
-                    <Link href="/pokeloja">
-                        <Pokeball
-                            onClick={toggleTheme(fire)}
-                        />
-                    </Link>
-                    <Link href="/pokeloja">
-                        <Pokeball
-                            onClick={toggleTheme(dragon)}
-                        />
-                    </Link>
+                    <div className="pokeball-container">
+                        <Link href="/pokeloja">
+                            <Pokeball
+                                onClick={toggleTheme(water)}
+                            />
+                        </Link>
+                        <p>Água</p>
+                    </div>
+                    <div className="pokeball-container">
+                        <Link href="/pokeloja">
+                            <Pokeball
+                                onClick={toggleTheme(fire)}
+                            />
+                        </Link>
+                        <p>Fogo</p>
+                    </div>
+                    <div className="pokeball-container">
+                        <Link href="/pokeloja">
+                            <Pokeball
+                                onClick={toggleTheme(dragon)}
+                            />
+                        </Link>
+                        <p>Dragão</p>
+                    </div>
                 </FlexContainerRow>
             </FlexContainerColumn>
         </>
