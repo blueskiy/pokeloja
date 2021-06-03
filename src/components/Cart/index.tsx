@@ -1,14 +1,14 @@
-import { useEffect, useState, useContext } from 'react';
-import Image from 'next/image';
-import { getStoragedItem } from '../../helpers/storage';
+import { useEffect, useState, useContext } from 'react'
+import Image from 'next/image'
+import { getStoragedItem } from '../../helpers/storage'
 import { Pokemon } from '../../interfaces/interfaces'
 
 import { useCart } from '../../contexts/CartContext'
 
-import Modal from 'react-modal';
+import Modal from 'react-modal'
 import { Container } from './styles'
 import { MdClose } from 'react-icons/md'
-import { BsTrash } from 'react-icons/bs';
+import { BsTrash } from 'react-icons/bs'
 
 const customStyles = {
     overlay: {
@@ -23,7 +23,7 @@ const customStyles = {
     //     marginRight: '-50%',
     //     transform: 'translate(-50%, -50%)'
     // }
-};
+}
 
 Modal.setAppElement('#__next')
 
@@ -35,16 +35,16 @@ interface CartProps {
 
 export function Cart({ isCartOpen, toggleCart, cart }: CartProps) {
     const [cartTotal, setCartTotal] = useState(0)
-    const [modalIsOpen, setIsOpen] = useState(false);
+    const [modalIsOpen, setIsOpen] = useState(false)
 
     const { removePokemon } = useCart()
 
     function openModal() {
-        setIsOpen(true);
+        setIsOpen(true)
     }
 
     function closeModal() {
-        setIsOpen(false);
+        setIsOpen(false)
     }
 
     useEffect(() => {

@@ -1,13 +1,14 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 
-import { water, fire, dragon } from '../styles/themes/themes';
+import { water, fire, dragon } from '../styles/themes/themes'
 import { Pokeball } from '../components/Pokeball'
 import { FlexContainerColumn, FlexContainerRow } from '../styles/pages/home'
 
 import { MyThemeContext } from '../contexts/ThemeContext'
-import { SignInButton } from '../components/SignInButton';
+import { SignInButton } from '../components/SignInButton'
+import { getStoragedItem, removeItemOnLocalStorage } from '../helpers/storage'
 
 export default function OnBoarding() {
     const { toggleTheme } = useContext(MyThemeContext)

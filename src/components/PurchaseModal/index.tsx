@@ -1,8 +1,8 @@
-import Modal from 'react-modal';
+import Modal from 'react-modal'
 
 interface PurchaseModalProps {
-    isOpen: boolean;
-    onRequestClose: () => void;
+    isOpen: boolean
+    onRequestClose: () => void
 }
 
 export function PurchaseModal({ isOpen, onRequestClose }: PurchaseModalProps) {

@@ -7,7 +7,8 @@ import { MyThemeContext } from '../contexts/ThemeContext'
 import { api } from '../services/api'
 import { Header } from '../components/Header'
 import { CatalogResults } from '../components/CatalogResults'
-import { getStoragedItem, setItemOnLocalStorage } from '../helpers/storage'
+import { getStoragedItem, removeItemOnLocalStorage, setItemOnLocalStorage } from '../helpers/storage'
+import { fire } from '../styles/themes/themes'
 
 export async function getServerSideProps(ctx) {
     const session = await getSession(ctx)
@@ -16,21 +17,18 @@ export async function getServerSideProps(ctx) {
 
 export default function Catalog() {
     const [pokemonCards, setPokemonCards] = useState([])
-    const { theme } = useContext(MyThemeContext)
+    const { persistedTheme } = useContext(MyThemeContext)
 
     const requestByType = () => {
-        if (theme.title === 'Água') {
-            setItemOnLocalStorage('@Pokeloja:type', 'AGUA')
+        if (persistedTheme().storageKey === 'AGUA') {
             return '11'
         }
 
-        if (theme.title === 'Fogo') {
-            setItemOnLocalStorage('@Pokeloja:type', 'FOGO')
+        if (persistedTheme().storageKey === 'FOGO') {
             return '10'
         }
 
-        if (theme.title === 'Dragão') {
-            setItemOnLocalStorage('@Pokeloja:type', 'DRAGAO')
+        if (persistedTheme().storageKey === 'DRAGAO') {
             return '16'
         }
     }
@@ -44,13 +42,13 @@ export default function Catalog() {
                 localStorage.setItem('@Pokemon:list', JSON.stringify(pokemon))
             })
 
-        const storagedTheme = JSON.parse(getStoragedItem('tema'))
+        console.log('amigo', persistedTheme())
     }, [])
 
     return (
         <>
             <Head>
-                <title>Pokéloja | {theme.title}</title>
+                <title>Pokéloja | {persistedTheme().title}</title>
             </Head>
             <Header />
             <CatalogResults cards={pokemonCards} />

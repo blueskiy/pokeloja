@@ -1,5 +1,5 @@
-import { PokemonCard } from "../PokemonCard";
-import { CatalogContainer } from "./styles";
+import { PokemonCard } from "../PokemonCard"
+import { CatalogContainer } from "./styles"
 
 interface CatalogResultsProps {
     cards: {
@@ -7,7 +7,7 @@ interface CatalogResultsProps {
             name: string
             url: string
         }
-    }[];
+    }[]
 }
 
 export function CatalogResults({ cards }: CatalogResultsProps) {

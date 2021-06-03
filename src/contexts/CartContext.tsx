@@ -26,11 +26,11 @@ export default function CartProvider({ children }: CartProviderProps): JSX.Eleme
         const storagedCart = getStoragedItem('@Pokeloja:cart')
 
         if (storagedCart) {
-            return JSON.parse(storagedCart);
+            return JSON.parse(storagedCart)
         }
 
-        return [];
-    });
+        return []
+    })
 
     const addPokemon = ({ pokemonId, uniquePokemonId, price }: AddPokemon) => {
         const pokemonList = JSON.parse(getStoragedItem('@Pokemon:list'))
@@ -74,15 +74,15 @@ export default function CartProvider({ children }: CartProviderProps): JSX.Eleme
 
         setCart(updatedCart)
         setItemOnLocalStorage('@Pokeloja:cart', JSON.stringify(updatedCart))
-    };
+    }
 
     const removePokemon = (uniquePokemonId: string) => {
         console.log(uniquePokemonId)
-    };
+    }
 
     const updatePokemonAmount = ({ pokemonId, amount }: UpdatePokemonAmount) => {
 
-    };
+    }
 
     return (
         <CartContext.Provider
@@ -95,11 +95,11 @@ export default function CartProvider({ children }: CartProviderProps): JSX.Eleme
         >
             {children}
         </CartContext.Provider>
-    );
+    )
 }
 
 export function useCart(): CartContextData {
-    const context = useContext(CartContext);
+    const context = useContext(CartContext)
 
-    return context;
+    return context
 }

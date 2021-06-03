@@ -17,7 +17,7 @@ import { SignInButton } from '../SignInButton'
 
 export function Header() {
     const [session] = useSession()
-    const { theme } = useContext(MyThemeContext)
+    const { persistedTheme } = useContext(MyThemeContext)
 
     const { cart } = useCart()
     const cartSize = cart.length
@@ -32,7 +32,7 @@ export function Header() {
         <Container>
             <IconContext.Provider value={{}}>
                 <div className="header-main-content">
-                    <h1>Pokéloja | <span>{theme.title}</span></h1>
+                    <h1>Pokéloja | <span>{persistedTheme().title}</span></h1>
                     <div className="input-container">
                         <input
                             type="text"
@@ -44,9 +44,8 @@ export function Header() {
                         /> */}
                     </div>
                     <span>
-                        <span className="bag-icon">
+                        <span onClick={toggleCart} className="bag-icon">
                             <GiSchoolBag
-                                onClick={toggleCart}
                                 color="white"
                                 size="30"
                             />

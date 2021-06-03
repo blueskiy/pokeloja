@@ -4,10 +4,10 @@ import {
     PokemonImage,
     PokemonInfo,
     AddToCartButton
-} from "./styles";
+} from "./styles"
 
 import { useCart } from '../../contexts/CartContext'
-import { getStoragedItem } from '../../helpers/storage';
+import { getStoragedItem } from '../../helpers/storage'
 
 interface PokemonCardProps {
     id: number
@@ -29,7 +29,7 @@ export function PokemonCard({ id, name, price, url }: PokemonCardProps) {
     }
 
     function handleAddPokemon(id: number) {
-        const storeType = getStoragedItem('@Pokeloja:type')
+        const storeType = JSON.parse(getStoragedItem('@Pokeloja:tema')).storageKey
         const uniquePokemonId = `${storeType}_${id}`
 
         const pokemonToAdd = {

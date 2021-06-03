@@ -1,6 +1,7 @@
-export type ThemeType = typeof water;
+export type ThemeType = typeof water
 
 export const water = {
+    storageKey: 'AGUA',
     title: 'Água',
     colors: {
         primary: '#0433ff',
@@ -9,6 +10,7 @@ export const water = {
 }
 
 export const fire: ThemeType = {
+    storageKey: 'FOGO',
     title: 'Fogo',
     colors: {
         primary: '#e60014',
@@ -17,6 +19,7 @@ export const fire: ThemeType = {
 }
 
 export const dragon: ThemeType = {
+    storageKey: 'DRAGAO',
     title: 'Dragão',
     colors: {
         primary: '#4D1D78',
@@ -24,5 +27,5 @@ export const dragon: ThemeType = {
     },
 }
 
-const theme = water;
-export default theme;
+const theme = water
+export default theme

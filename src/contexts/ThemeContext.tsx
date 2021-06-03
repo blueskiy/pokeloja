@@ -1,9 +1,9 @@
-import { ThemeType } from '../styles/themes/themes';
-import { createContext, ReactNode } from 'react';
+import { ThemeType } from '../styles/themes/themes'
+import { createContext, ReactNode } from 'react'
 
 interface ThemeContextData {
-    theme: ThemeType
-    toggleTheme: (ThemeType) => () => void
+    toggleTheme: (ThemeType: ThemeType) => () => void
+    persistedTheme: () => ThemeType
 }
 
 export const MyThemeContext = createContext({} as ThemeContextData)
@@ -11,19 +11,19 @@ export const MyThemeContext = createContext({} as ThemeContextData)
 interface ThemeProviderProps {
     children: ReactNode
     value: {
-        theme: ThemeType
-        toggleTheme: (ThemeType) => () => void
+        toggleTheme: (ThemeType: ThemeType) => () => void
+        persistedTheme: () => ThemeType
     }
 }
 
 export function MyThemeProvider({ children, value }: ThemeProviderProps) {
-    const { theme, toggleTheme } = value
+    const { toggleTheme, persistedTheme } = value
 
     return (
         <MyThemeContext.Provider
             value={{
-                theme,
                 toggleTheme,
+                persistedTheme
             }}>
             {children}
         </MyThemeContext.Provider>
