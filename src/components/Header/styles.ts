@@ -48,15 +48,26 @@ export const Container = styled.div`
             }
         }
 
-        input {
-            border: none;
-            border-radius: 4px;
-            padding: 10px;
-            width: 40vw;
-            max-width: 500px;
+        .input-container {
+            position: relative;
 
-            &:focus {
-                outline: none;
+            input {
+                border: none;
+                border-radius: 4px;
+                padding: 10px;
+                width: 40vw;
+                max-width: 500px;
+
+                &:focus {
+                    outline: none;
+                }
+            }
+
+            svg {
+                position: absolute;
+                right: 15px;
+                top: 50%;
+                transform: translateY(-50%);
             }
         }
 

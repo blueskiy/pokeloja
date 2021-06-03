@@ -14,7 +14,7 @@ interface UpdatePokemonAmount {
 
 interface CartContextData {
     cart: Pokemon[];
-    addPokemon: (pokemonId: number, storeId: string) => void;
+    addPokemon: (pokemonId: number, storeId: string, price: number) => void;
     removePokemon: (pokemonId: number) => void;
     updatePokemonAmount: ({ pokemonId, amount }: UpdatePokemonAmount) => void;
 }
@@ -32,7 +32,7 @@ export default function CartProvider({ children }: CartProviderProps): JSX.Eleme
         return [];
     });
 
-    const addPokemon = (pokemonId: number, storeId: string) => {
+    const addPokemon = (pokemonId: number, storeId: string, price: number) => {
         const pokemonList = JSON.parse(getStoragedItem('@Pokemon:list'))
         const findPokemon = pokemonList.find((pokemon, index) => {
             return index === pokemonId
@@ -65,7 +65,7 @@ export default function CartProvider({ children }: CartProviderProps): JSX.Eleme
                 id: pokemonId,
                 storeId: storeId,
                 name: pokemonName,
-                price: 100,
+                price: price,
                 image: '',
                 amount: amount
             }

@@ -26,6 +26,23 @@ export default createGlobalStyle`
         -webkit-font-smoothing: antialiased;
     }
 
+    body::-webkit-scrollbar,
+    .cart-content::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    body::-webkit-scrollbar-track,
+    .cart-content::-webkit-scrollbar-track {
+        background: #eee;
+    }
+
+    body::-webkit-scrollbar-thumb,
+    .cart-content::-webkit-scrollbar-thumb {
+        background-color: #ccc;
+        border-radius: 20px;
+        border: none;
+    }
+
     body,
     input,
     textarea,

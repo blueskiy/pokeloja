@@ -77,11 +77,12 @@ export const AddToCartButton = styled.button`
     border: none;
     padding: 10px 0;
     text-align: center;
-    background: #4d54dd;
+    background: ${props => props.theme.colors.primary};
     border-radius: 0 0 10px 10px;
     transition: background 100ms ease-in-out;
 
     &:hover {
-        background: #5e66ff;
+        background: ${props => props.theme.colors.primary};
+        opacity: 0.8;
     }
 `

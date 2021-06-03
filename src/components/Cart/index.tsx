@@ -2,7 +2,10 @@ import Modal from 'react-modal';
 import { MdClose } from 'react-icons/md'
 import { Pokemon } from '../../interfaces/interfaces'
 import { Container } from './styles'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
+import { getStoragedItem } from '../../helpers/storage';
+import { BsTrash } from 'react-icons/bs';
 
 const customStyles = {
     overlay: {
@@ -38,6 +41,28 @@ export function Cart({ isCartOpen, toggleCart, cart }: CartProps) {
         setIsOpen(false);
     }
 
+    const [cartTotal, setCartTotal] = useState(0)
+
+    useEffect(() => {
+        const pokemonOnCart = JSON.parse(getStoragedItem('@Pokeloja:cart'))
+        console.log(pokemonOnCart)
+
+        if (pokemonOnCart !== null) {
+            // const cartSum = pokemonOnCart.reduce((current, next) => {
+            //     ({ price: current.price + next.price })
+            // })
+
+            const cartSum = pokemonOnCart.reduce((a, b) => ({ price: a.price + b.price }))
+
+            setCartTotal(cartSum.price)
+            console.log(cartSum.price)
+        }
+
+        // const total = pokemonOnCart.reduce((current, next) => {
+        //     current.price + next.price
+        // })
+    }, [cart])
+
     return (
         <Container>
             <div className={isCartOpen ? 'cart active' : 'cart'}>
@@ -53,17 +78,43 @@ export function Cart({ isCartOpen, toggleCart, cart }: CartProps) {
                             ? ''
                             : cart.map((pokemon) => {
                                 return (
-                                    <span key={pokemon.storeId}>{pokemon.name} x{pokemon.amount}</span>
+                                    <div key={pokemon.storeId} className="cart-item">
+                                        <Image
+                                            src={"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png"}
+                                            width={60}
+                                            height={60}
+                                            alt=""
+                                            unoptimized
+                                        />
+                                        <span>
+                                            {pokemon.name} x{pokemon.amount}
+                                        </span>
+                                        <div className="item-right-container">
+                                            <span className="item-price">
+                                                R${pokemon.price},00
+                                            </span>
+                                            <BsTrash
+                                                size="15"
+                                                color="black"
+                                            />
+                                        </div>
+                                    </div>
                                 )
                             })
                     }
                 </div>
-                <button className="checkout-button"
-                    type="button"
-                    onClick={openModal}
-                >
-                    FINALIZAR
-                </button>
+                <div className="cart-resume">
+                    <div className="cart-amount">
+                        <span className="amount-title">TOTAL</span>
+                        <span className="amount-value">R${cartTotal},00</span>
+                    </div>
+                    <button className="checkout-button"
+                        type="button"
+                        onClick={openModal}
+                    >
+                        FINALIZAR
+                    </button>
+                </div>
             </div>
 
             <Modal

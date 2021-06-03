@@ -20,7 +20,7 @@ export const Container = styled.div`
             right: 0;
         }
 
-        svg {
+        > svg {
             cursor: pointer;
             position: absolute;
             top: 8px;
@@ -28,37 +28,90 @@ export const Container = styled.div`
         }
 
         .cart-title {
+            width: 100%;
+            padding: 8px 0 12px 0;
+            text-align: center;
             font-size: 20px;
             font-weight: bold;
+            border-bottom: 1px solid #eee;
         }
 
         .cart-content {
             width: 100%;
             display: flex;
+            overflow: auto;
             flex-direction: column;
             align-items: flex-start;
+
+            .cart-item {
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+
+                width: 100%;
+                position: relative;
+
+                .item-right-container {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+
+                    position: absolute;
+                    right: 15px;
+                    top: 50%;
+                    transform: translateY(-50%);
+
+                    .item-price {
+                        margin-right: 15px;
+                    }
+
+                    svg {
+                        cursor: pointer;
+                    }
+                }
+            }
         }
 
-        .checkout-button {
+        .cart-resume {
+            display: flex;
+            flex-direction: column;
+
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            padding: 20px 0;
-            border-radius: none;
-            border: none;
-            background: rgb(255, 67, 67);
-            color: #FFF;
-            font-weight: bold;
-            font-size: 20px;
-            transition: background 150ms ease-in-out;
 
-            &:hover {
-                background: rgb(235, 85, 85);
+            .cart-amount {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 10px 15px;
+                background: #FFF;
+                border-top: 1px solid #eee;
+
+                .amount-title {
+                    font-weight: bold;
+                    font-size: 1.3rem;
+                }
             }
 
-            &:focus {
-                outline: none;
+            .checkout-button {
+                padding: 20px 0;
+                border-radius: none;
+                border: none;
+                background: rgb(255, 67, 67);
+                color: #FFF;
+                font-weight: bold;
+                font-size: 20px;
+                transition: background 150ms ease-in-out;
+
+                &:hover {
+                    background: rgb(235, 85, 85);
+                }
+
+                &:focus {
+                    outline: none;
+                }
             }
         }
     }
