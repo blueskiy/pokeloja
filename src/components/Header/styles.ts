@@ -137,7 +137,12 @@ export const Container = styled.div`
         height: 115px;
         padding: 12px 1.1rem;
 
-        > div {
+        > a {
+            top: 0;
+            left: 1.1rem;
+        }
+
+        .header-main-content {
             padding: 12px 0;
             align-items: flex-start;
 
@@ -148,18 +153,25 @@ export const Container = styled.div`
                 padding-top: 5px;
             }
 
-            input {
+            .input-container {
                 position: absolute;
                 bottom: 10px;
                 left: 50%;
                 transform: translateX(-50%);
                 width: 93vw;
+
+                input {
+                    width: 100%;
+                }
             }
 
             > span {
                 font-size: 0;
-                position: absolute;
-                right: 6rem;
+                padding-top: 0.3rem;
+
+                .bag-icon {
+                    margin-right: 0;
+                }
 
                 img {
                     width: 43px;

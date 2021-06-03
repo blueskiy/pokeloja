@@ -80,10 +80,7 @@ export const Container = styled.div`
         .cart-resume {
             display: flex;
             flex-direction: column;
-
-            /* position: absolute;
-            bottom: 0;
-            left: 0; */
+            
             width: 100%;
 
             .cart-amount {
@@ -118,6 +115,11 @@ export const Container = styled.div`
                     outline: none;
                 }
             }
+        }
+        
+        @media(max-width: 767px) {
+            width: 100vw;
+            right: -100vw;
         }
     }
 `;
