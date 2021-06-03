@@ -31,6 +31,12 @@ export function Header(props) {
             <IconContext.Provider value={{}}>
                 <div className="header-main-content">
                     <h1>Pokéloja | <span>{persistedTheme().title}</span></h1>
+                    <Link href="/">
+                        <a>
+                            <BsArrowLeft color="white" size="17" />
+                            Home
+                        </a>
+                    </Link>
                     <div className="input-container">
                         <input
                             type="text"
@@ -59,12 +65,6 @@ export function Header(props) {
                     </span>
                     <SignInButton />
                 </div>
-                <Link href="/">
-                    <a>
-                        <BsArrowLeft color="white" size="17" />
-                        Home
-                    </a>
-                </Link>
 
                 <Cart
                     toggleCart={toggleCart}

@@ -14,26 +14,6 @@ export const Container = styled.div`
     box-shadow: 0 0 10px -1px rgb(0 0 0);
     background-color: ${props => props.theme.colors.primary};
 
-    > a {
-        display: flex;
-        align-items: center;
-        font-size: smaller;
-        position: absolute;
-        left: 4.4rem;
-        bottom: 4px;
-        color: #FFF;
-        transition: color 50ms ease-in-out;
-        text-decoration: none;
-
-        svg {
-            margin-right: 2px;
-        }
-
-        &:hover {
-            color: ${props => props.theme.colors.secundary};
-        }
-    }
-
     .header-main-content {
         display: flex;
         align-items: center;
@@ -47,6 +27,26 @@ export const Container = styled.div`
             color: #FFF;
 
             span {
+                color: ${props => props.theme.colors.secundary};
+            }
+        }
+
+        > a {
+            display: flex;
+            align-items: center;
+            font-size: smaller;
+            position: absolute;
+            left: 0;
+            bottom: -1rem;
+            color: #FFF;
+            transition: color 50ms ease-in-out;
+            text-decoration: none;
+
+            svg {
+                margin-right: 2px;
+            }
+
+            &:hover {
                 color: ${props => props.theme.colors.secundary};
             }
         }
@@ -137,11 +137,6 @@ export const Container = styled.div`
         height: 115px;
         padding: 12px 1.1rem;
 
-        > a {
-            top: 0;
-            left: 1.1rem;
-        }
-
         .header-main-content {
             padding: 12px 0;
             align-items: flex-start;
@@ -151,6 +146,11 @@ export const Container = styled.div`
             h1 {
                 font-size: 21px;
                 padding-top: 5px;
+            }
+
+            > a {
+                top: 0;
+                left: 0;
             }
 
             .input-container {

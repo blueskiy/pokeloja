@@ -7,12 +7,13 @@ export const Container = styled.div`
         align-items: center;
         justify-content: space-between;
 
-        width: 35vw;
+        width: 30vw;
+        max-width: 430px;
         height: 100vh;
         position: fixed;
         padding-top: 10px;
         top: 0;
-        right: -35vw;
+        right: -30vw;
         z-index: 2;
         transition: right 500ms ease-in-out;
         background-color: #FFF;
