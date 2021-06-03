@@ -59,9 +59,9 @@ export default function CartProvider({ children }: CartProviderProps): JSX.Eleme
         } else {
             const newPokemon = {
                 id: pokemonId,
-                uniquePokemonId: uniquePokemonId,
+                uniquePokemonId,
                 name: pokemonName,
-                price: price,
+                price,
                 pokemonImageURL: pokemonOnCartImage,
                 amount: amount
             }
@@ -74,7 +74,18 @@ export default function CartProvider({ children }: CartProviderProps): JSX.Eleme
     }
 
     const removePokemon = (uniquePokemonId: string) => {
-        console.log(uniquePokemonId)
+        const updatedCart = [...cart]
+        const pokemonIndex = updatedCart.findIndex((pokemon: any) => {
+            return pokemon.uniquePokemonId === uniquePokemonId
+        })
+
+        console.log(pokemonIndex)
+
+        if (pokemonIndex >= 0) {
+            updatedCart.splice(pokemonIndex, 1)
+            setCart(updatedCart)
+            setItemOnLocalStorage('@Pokeloja:cart', JSON.stringify(updatedCart))
+        }
     }
 
     const updatePokemonAmount = ({ pokemonId, amount }: UpdatePokemonAmount) => {

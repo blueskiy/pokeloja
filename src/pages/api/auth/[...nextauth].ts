@@ -9,7 +9,4 @@ export default NextAuth({
             scope: 'read-user'
         }),
     ],
-
-    // A database is optional, but required to persist accounts in a database
-    // database: process.env.DATABASE_URL,
 })

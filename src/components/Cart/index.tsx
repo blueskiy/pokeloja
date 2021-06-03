@@ -36,10 +36,12 @@ export function Cart({ isCartOpen, toggleCart, cart }: CartProps) {
   useEffect(() => {
     const pokemonOnCart = JSON.parse(getStoragedItem('@Pokeloja:cart'))
 
-    if (pokemonOnCart !== null) {
+    if (pokemonOnCart.length > 0) {
       const cartSum = pokemonOnCart.reduce((a: Pokemon, b: Pokemon) => ({ price: a.price + b.price * b.amount }))
 
       setCartTotal(cartSum.price)
+    } else {
+      setCartTotal(0)
     }
   }, [cart])
 
@@ -74,11 +76,16 @@ export function Cart({ isCartOpen, toggleCart, cart }: CartProps) {
                     <div className="item-right-container">
                       <span className="item-price">
                         R${pokemon.price},00
-                                            </span>
-                      <BsTrash
-                        size="15"
-                        color="black"
-                      />
+                      </span>
+                      <div
+                        className="trash-icon"
+                        onClick={e => removePokemon(pokemon.uniquePokemonId)}
+                      >
+                        <BsTrash
+                          size="15"
+                          color="black"
+                        />
+                      </div>
                     </div>
                   </div>
                 )
@@ -95,7 +102,7 @@ export function Cart({ isCartOpen, toggleCart, cart }: CartProps) {
             onClick={openModal}
           >
             FINALIZAR
-                    </button>
+          </button>
         </div>
       </div>
 
@@ -106,7 +113,7 @@ export function Cart({ isCartOpen, toggleCart, cart }: CartProps) {
         contentLabel="Modal de Compra Finalizada"
       >
         Obrigado!!!
-            </Modal>
+      </Modal>
     </Container>
   )
 }

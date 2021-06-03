@@ -67,7 +67,10 @@ export const Container = styled.div`
                         margin-right: 15px;
                     }
 
-                    svg {
+                    .trash-icon {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
                         cursor: pointer;
                     }
                 }
