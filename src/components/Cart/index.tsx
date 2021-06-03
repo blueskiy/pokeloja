@@ -36,7 +36,7 @@ export function Cart({ isCartOpen, toggleCart, cart }: CartProps) {
   useEffect(() => {
     const pokemonOnCart = JSON.parse(getStoragedItem('@Pokeloja:cart'))
 
-    if (pokemonOnCart.length > 0) {
+    if (pokemonOnCart !== null && pokemonOnCart.length > 0) {
       const cartSum = pokemonOnCart.reduce((a: Pokemon, b: Pokemon) => ({ price: a.price + b.price * b.amount }))
 
       setCartTotal(cartSum.price)
