@@ -5,7 +5,7 @@ export const FlexContainerRow = styled.div`
     align-items: center;
     justify-content: space-between;
 
-    width: 615px;
+    width: 70rem;
 
     .pokeball-container {
         display: flex;

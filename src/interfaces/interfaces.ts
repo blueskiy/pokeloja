@@ -3,7 +3,7 @@ export interface Pokemon {
     uniquePokemonId: string
     name: string
     price: number
-    image: string
+    pokemonImageURL: string
     amount: number
 }
 

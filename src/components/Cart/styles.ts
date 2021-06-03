@@ -5,11 +5,12 @@ export const Container = styled.div`
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: space-between;
 
         width: 35vw;
         height: 100vh;
         position: fixed;
-        padding: 10px;
+        padding-top: 10px;
         top: 0;
         right: -35vw;
         z-index: 2;
@@ -38,6 +39,7 @@ export const Container = styled.div`
 
         .cart-content {
             width: 100%;
+            height: 100%;
             display: flex;
             overflow: auto;
             flex-direction: column;
@@ -76,9 +78,9 @@ export const Container = styled.div`
             display: flex;
             flex-direction: column;
 
-            position: absolute;
+            /* position: absolute;
             bottom: 0;
-            left: 0;
+            left: 0; */
             width: 100%;
 
             .cart-amount {
@@ -116,3 +118,18 @@ export const Container = styled.div`
         }
     }
 `;
+
+export const customStyles = {
+    overlay: {
+        zIndex: 3,
+        backgroundColor: 'rgba(0, 0, 0, 0.6)'
+    },
+    // content: {
+    //     top: '50%',
+    //     left: '50%',
+    //     right: 'auto',
+    //     bottom: 'auto',
+    //     marginRight: '-50%',
+    //     transform: 'translate(-50%, -50%)'
+    // }
+}

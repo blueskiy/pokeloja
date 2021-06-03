@@ -32,21 +32,18 @@ export default function CartProvider({ children }: CartProviderProps): JSX.Eleme
         return []
     })
 
-    const addPokemon = ({ pokemonId, uniquePokemonId, price }: AddPokemon) => {
+    const addPokemon = async ({ pokemonId, uniquePokemonId, price }: AddPokemon) => {
         const pokemonList = JSON.parse(getStoragedItem('@Pokemon:list'))
         const findPokemon = pokemonList.find((pokemon: any, index: number) => {
             return index === pokemonId
         })
 
         const pokemonName = findPokemon.pokemon.name
-        // const pokemonURL = pokemonListRs.pokemon.url
+        const pokemonURL = findPokemon.pokemon.url
 
-        // const pokemonImage = async () => {
-        //     const getPokemon = await api.get(`${pokemonURL.substring(25)}`)
-        //     const pokemonImageURL = getPokemon.data.sprites.front_default
-
-        //     return pokemonImageURL
-        // }
+        const getPokemonInfo = api.get(pokemonURL)
+        const imageURL = await getPokemonInfo
+        const pokemonOnCartImage = imageURL.data.sprites.front_default
 
         const updatedCart = [...cart]
         const pokemonExistsOnCart = updatedCart.find((pokemon) => {
@@ -65,7 +62,7 @@ export default function CartProvider({ children }: CartProviderProps): JSX.Eleme
                 uniquePokemonId: uniquePokemonId,
                 name: pokemonName,
                 price: price,
-                image: '',
+                pokemonImageURL: pokemonOnCartImage,
                 amount: amount
             }
 

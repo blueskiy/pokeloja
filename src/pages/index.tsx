@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { useContext, useEffect } from 'react'
 
-import { water, fire, dragon } from '../styles/themes/themes'
+import { water, fire, dragon, flying, grass, fighting } from '../styles/themes/themes'
 import { Pokeball } from '../components/Pokeball'
 import { FlexContainerColumn, FlexContainerRow } from '../styles/pages/home'
 
@@ -40,6 +40,30 @@ export default function OnBoarding() {
                             />
                         </Link>
                         <p>Fogo</p>
+                    </div>
+                    <div className="pokeball-container">
+                        <Link href="/pokeloja">
+                            <Pokeball
+                                onClick={toggleTheme(grass)}
+                            />
+                        </Link>
+                        <p>Planta</p>
+                    </div>
+                    <div className="pokeball-container">
+                        <Link href="/pokeloja">
+                            <Pokeball
+                                onClick={toggleTheme(flying)}
+                            />
+                        </Link>
+                        <p>Voador</p>
+                    </div>
+                    <div className="pokeball-container">
+                        <Link href="/pokeloja">
+                            <Pokeball
+                                onClick={toggleTheme(fighting)}
+                            />
+                        </Link>
+                        <p>Lutador</p>
                     </div>
                     <div className="pokeball-container">
                         <Link href="/pokeloja">

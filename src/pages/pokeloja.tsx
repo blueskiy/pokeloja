@@ -28,6 +28,18 @@ export default function Catalog() {
             return '10'
         }
 
+        if (persistedTheme().storageKey === 'PLANTA') {
+            return '12'
+        }
+
+        if (persistedTheme().storageKey === 'VOADOR') {
+            return '3'
+        }
+
+        if (persistedTheme().storageKey === 'LUTADOR') {
+            return '2'
+        }
+
         if (persistedTheme().storageKey === 'DRAGAO') {
             return '16'
         }

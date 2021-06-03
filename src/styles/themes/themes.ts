@@ -18,6 +18,33 @@ export const fire: ThemeType = {
     },
 }
 
+export const grass: ThemeType = {
+    storageKey: 'PLANTA',
+    title: 'Planta',
+    colors: {
+        primary: '#e60014',
+        secundary: '#fad70a'
+    },
+}
+
+export const flying: ThemeType = {
+    storageKey: 'VOADOR',
+    title: 'Voador',
+    colors: {
+        primary: '#e60014',
+        secundary: '#fad70a'
+    },
+}
+
+export const fighting: ThemeType = {
+    storageKey: 'LUTADOR',
+    title: 'Lutador',
+    colors: {
+        primary: '#e60014',
+        secundary: '#fad70a'
+    },
+}
+
 export const dragon: ThemeType = {
     storageKey: 'DRAGAO',
     title: 'Dragão',
