@@ -7,8 +7,7 @@ import { MyThemeContext } from '../contexts/ThemeContext'
 import { api } from '../services/api'
 import { Header } from '../components/Header'
 import { CatalogResults } from '../components/CatalogResults'
-import { getStoragedItem, removeItemOnLocalStorage, setItemOnLocalStorage } from '../helpers/storage'
-import { fire } from '../styles/themes/themes'
+import { getStoragedItem, setItemOnLocalStorage } from '../helpers/storage'
 
 export async function getServerSideProps(ctx) {
     const session = await getSession(ctx)
@@ -17,6 +16,7 @@ export async function getServerSideProps(ctx) {
 
 export default function Catalog() {
     const [pokemonCards, setPokemonCards] = useState([])
+    const [search, setSearch] = useState('')
     const { persistedTheme } = useContext(MyThemeContext)
 
     const requestByType = () => {
@@ -51,19 +51,34 @@ export default function Catalog() {
                 const { pokemon } = response.data
                 setPokemonCards(pokemon)
 
-                localStorage.setItem('@Pokemon:list', JSON.stringify(pokemon))
+                setItemOnLocalStorage('@Pokemon:list', JSON.stringify(pokemon))
+            })
+    }, [])
+
+    const pokemonToRender = () => {
+        if (getStoragedItem('@Pokemon:list')) {
+            const pokemonList = JSON.parse(getStoragedItem('@Pokemon:list'))
+            const filteredPokemon = pokemonList.filter(pokemon => {
+                return pokemon.pokemon.name.toLowerCase().includes(search.toLowerCase())
             })
 
-        console.log('amigo', persistedTheme())
-    }, [])
+            return filteredPokemon
+        } else {
+            const filteredPokemon = pokemonCards
+            return filteredPokemon
+        }
+    }
 
     return (
         <>
             <Head>
                 <title>Pokéloja | {persistedTheme().title}</title>
             </Head>
-            <Header />
-            <CatalogResults cards={pokemonCards} />
+            <Header
+                search={search}
+                setSearch={setSearch}
+            />
+            <CatalogResults cards={pokemonToRender()} />
         </>
     )
 }

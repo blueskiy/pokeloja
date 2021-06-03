@@ -11,6 +11,7 @@ export const Container = styled.div`
     z-index: 1;
     padding: 12px 4.4rem;
     margin-bottom: 20px;
+    box-shadow: 0 0 10px -1px rgb(0 0 0);
     background-color: ${props => props.theme.colors.primary};
 
     > a {

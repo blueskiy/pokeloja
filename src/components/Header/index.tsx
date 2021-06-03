@@ -15,13 +15,11 @@ import { CgPokemon } from 'react-icons/cg'
 import { Container } from './styles'
 import { SignInButton } from '../SignInButton'
 
-export function Header() {
+export function Header(props) {
     const [session] = useSession()
     const { persistedTheme } = useContext(MyThemeContext)
-
     const { cart } = useCart()
     const cartSize = cart.length
-
     const [isCartOpen, setIsCartOpen] = useState(false)
 
     const toggleCart = () => {
@@ -36,6 +34,7 @@ export function Header() {
                     <div className="input-container">
                         <input
                             type="text"
+                            onChange={e => props.setSearch(e.target.value)}
                             placeholder="busque aqui seu pokemon"
                         />
                         {/* <CgPokemon

@@ -7,7 +7,7 @@ import { ThemeProvider } from 'styled-components'
 import { water, fire, dragon, ThemeType } from '../styles/themes/themes'
 
 import { MyThemeProvider } from '../contexts/ThemeContext'
-import { getStoragedItem, setItemOnLocalStorage } from '../helpers/storage'
+import { getStoragedItem, removeItemOnLocalStorage, setItemOnLocalStorage } from '../helpers/storage'
 
 const CartProvider = dynamic(
     () => import('../contexts/CartContext'),
@@ -20,6 +20,7 @@ function MyApp({ Component, pageProps }) {
     const toggleTheme = (theme: ThemeType) => () => {
         setTheme(theme)
         setItemOnLocalStorage('@Pokeloja:tema', JSON.stringify(theme))
+        removeItemOnLocalStorage('@Pokemon:list')
     }
 
     const persistedTheme = () => {
