@@ -1,10 +1,13 @@
-import Modal from 'react-modal';
-import { MdClose } from 'react-icons/md'
-import { Pokemon } from '../../interfaces/interfaces'
-import { Container } from './styles'
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import Image from 'next/image';
 import { getStoragedItem } from '../../helpers/storage';
+import { Pokemon } from '../../interfaces/interfaces'
+
+import { useCart } from '../../contexts/CartContext'
+
+import Modal from 'react-modal';
+import { Container } from './styles'
+import { MdClose } from 'react-icons/md'
 import { BsTrash } from 'react-icons/bs';
 
 const customStyles = {
@@ -31,7 +34,10 @@ interface CartProps {
 }
 
 export function Cart({ isCartOpen, toggleCart, cart }: CartProps) {
+    const [cartTotal, setCartTotal] = useState(0)
     const [modalIsOpen, setIsOpen] = useState(false);
+
+    const { removePokemon } = useCart()
 
     function openModal() {
         setIsOpen(true);
@@ -41,26 +47,14 @@ export function Cart({ isCartOpen, toggleCart, cart }: CartProps) {
         setIsOpen(false);
     }
 
-    const [cartTotal, setCartTotal] = useState(0)
-
     useEffect(() => {
         const pokemonOnCart = JSON.parse(getStoragedItem('@Pokeloja:cart'))
-        console.log(pokemonOnCart)
 
         if (pokemonOnCart !== null) {
-            // const cartSum = pokemonOnCart.reduce((current, next) => {
-            //     ({ price: current.price + next.price })
-            // })
-
-            const cartSum = pokemonOnCart.reduce((a, b) => ({ price: a.price + b.price }))
+            const cartSum = pokemonOnCart.reduce((a: Pokemon, b: Pokemon) => ({ price: a.price + b.price }))
 
             setCartTotal(cartSum.price)
-            console.log(cartSum.price)
         }
-
-        // const total = pokemonOnCart.reduce((current, next) => {
-        //     current.price + next.price
-        // })
     }, [cart])
 
     return (
@@ -78,7 +72,7 @@ export function Cart({ isCartOpen, toggleCart, cart }: CartProps) {
                             ? ''
                             : cart.map((pokemon) => {
                                 return (
-                                    <div key={pokemon.storeId} className="cart-item">
+                                    <div key={pokemon.uniquePokemonId} className="cart-item">
                                         <Image
                                             src={"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png"}
                                             width={60}
@@ -119,10 +113,9 @@ export function Cart({ isCartOpen, toggleCart, cart }: CartProps) {
 
             <Modal
                 isOpen={modalIsOpen}
-                // onAfterOpen={afterOpenModal}
                 onRequestClose={closeModal}
                 style={customStyles}
-                contentLabel="Example Modal"
+                contentLabel="Modal de Compra Finalizada"
             >
                 Obrigado!!!
             </Modal>

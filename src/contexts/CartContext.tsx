@@ -1,25 +1,25 @@
-import { createContext, ReactNode, useContext, useState } from 'react';
-import { getStoragedItem, setItemOnLocalStorage } from '../helpers/storage';
-import { Pokemon } from '../interfaces/interfaces';
+import { createContext, ReactNode, useContext, useState } from 'react'
+import { getStoragedItem, setItemOnLocalStorage } from '../helpers/storage'
+import { Pokemon, AddPokemon } from '../interfaces/interfaces'
 import { api } from '../services/api'
 
 interface CartProviderProps {
-    children: ReactNode;
+    children: ReactNode
 }
 
 interface UpdatePokemonAmount {
-    pokemonId: number;
-    amount: number;
+    pokemonId: number
+    amount: number
 }
 
 interface CartContextData {
-    cart: Pokemon[];
-    addPokemon: (pokemonId: number, storeId: string, price: number) => void;
-    removePokemon: (pokemonId: number) => void;
-    updatePokemonAmount: ({ pokemonId, amount }: UpdatePokemonAmount) => void;
+    cart: Pokemon[]
+    addPokemon: ({ }: AddPokemon) => void
+    removePokemon: (uniquePokemonId: string) => void
+    updatePokemonAmount: ({ pokemonId, amount }: UpdatePokemonAmount) => void
 }
 
-const CartContext = createContext<CartContextData>({} as CartContextData);
+const CartContext = createContext<CartContextData>({} as CartContextData)
 
 export default function CartProvider({ children }: CartProviderProps): JSX.Element {
     const [cart, setCart] = useState<Pokemon[]>(() => {
@@ -32,9 +32,9 @@ export default function CartProvider({ children }: CartProviderProps): JSX.Eleme
         return [];
     });
 
-    const addPokemon = (pokemonId: number, storeId: string, price: number) => {
+    const addPokemon = ({ pokemonId, uniquePokemonId, price }: AddPokemon) => {
         const pokemonList = JSON.parse(getStoragedItem('@Pokemon:list'))
-        const findPokemon = pokemonList.find((pokemon, index) => {
+        const findPokemon = pokemonList.find((pokemon: any, index: number) => {
             return index === pokemonId
         })
 
@@ -50,7 +50,7 @@ export default function CartProvider({ children }: CartProviderProps): JSX.Eleme
 
         const updatedCart = [...cart]
         const pokemonExistsOnCart = updatedCart.find((pokemon) => {
-            return pokemon.storeId === storeId
+            return pokemon.uniquePokemonId === uniquePokemonId
         })
 
         const currentAmount = pokemonExistsOnCart ? pokemonExistsOnCart.amount : 0
@@ -58,12 +58,11 @@ export default function CartProvider({ children }: CartProviderProps): JSX.Eleme
 
         if (pokemonExistsOnCart) {
             pokemonExistsOnCart.amount = amount
-        } else {
-            // const storeType = getStoragedItem('@Pokeloja:type')
 
+        } else {
             const newPokemon = {
                 id: pokemonId,
-                storeId: storeId,
+                uniquePokemonId: uniquePokemonId,
                 name: pokemonName,
                 price: price,
                 image: '',
@@ -77,14 +76,11 @@ export default function CartProvider({ children }: CartProviderProps): JSX.Eleme
         setItemOnLocalStorage('@Pokeloja:cart', JSON.stringify(updatedCart))
     };
 
-    const removePokemon = (pokemonId: number) => {
-
+    const removePokemon = (uniquePokemonId: string) => {
+        console.log(uniquePokemonId)
     };
 
-    const updatePokemonAmount = ({
-        pokemonId,
-        amount,
-    }: UpdatePokemonAmount) => {
+    const updatePokemonAmount = ({ pokemonId, amount }: UpdatePokemonAmount) => {
 
     };
 

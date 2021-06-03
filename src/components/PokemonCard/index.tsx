@@ -30,9 +30,15 @@ export function PokemonCard({ id, name, price, url }: PokemonCardProps) {
 
     function handleAddPokemon(id: number) {
         const storeType = getStoragedItem('@Pokeloja:type')
-        const storeId = `${storeType}_${id}`
+        const uniquePokemonId = `${storeType}_${id}`
 
-        addPokemon(id, storeId, price)
+        const pokemonToAdd = {
+            pokemonId: id,
+            uniquePokemonId,
+            price
+        }
+
+        addPokemon(pokemonToAdd)
     }
 
     return (

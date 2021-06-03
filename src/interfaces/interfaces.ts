@@ -1,8 +1,14 @@
 export interface Pokemon {
     id: number
-    storeId: string
+    uniquePokemonId: string
     name: string
     price: number
     image: string
     amount: number
+}
+
+export interface AddPokemon {
+    pokemonId: number
+    uniquePokemonId: string
+    price: number
 }
