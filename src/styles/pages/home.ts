@@ -6,6 +6,7 @@ export const FlexContainerRow = styled.div`
 
     width: 90vw;
     flex-wrap: wrap;
+    max-width: 1200px;
 
     .pokeball-container {
         ${flexBetween}
@@ -38,7 +39,6 @@ export const FlexContainerColumn = styled(FlexContainerRow)`
 
     width: 100vw;
     height: 80vh;
-    max-width: 1200px;
 
     h1 {
         display: inline-block;
