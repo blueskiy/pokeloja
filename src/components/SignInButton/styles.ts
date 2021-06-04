@@ -11,4 +11,8 @@ export const SignInButtonStyled = styled.button`
     &:hover {
         background: #464ff8;
     }
+
+    @media(max-width:767px) {
+        display: none;
+    }
 `;

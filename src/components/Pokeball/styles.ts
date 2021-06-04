@@ -3,10 +3,10 @@ import styled from 'styled-components';
 export const PokeballStyle = styled.div`
     cursor: pointer;
     position: relative;
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
     background: #fff;
-    border: 5px solid #111;
+    border: 4px solid #111;
     border-radius: 50%;
     overflow: hidden;
     box-shadow: inset -10px 10px 0 10px #ccc;
@@ -50,24 +50,38 @@ export const PokeballStyle = styled.div`
         80% { transform: translate(3px, 0) rotate(5deg); }
         100% { transform: translate(0, 0) rotate(0); }
     }
+
+    @media(max-width:767px) {
+        width: 75px;
+        height: 75px;
+    }
 `
 
 export const PokeballButton = styled.div`
     position: absolute;
-    top: calc(50% - 20px);
-    left: calc(50% - 20px);
-    width: 40px;
-    height: 40px;
+    top: calc(50% - 16px);
+    left: calc(50% - 16px);
+    width: 32px;
+    height: 32px;
     background: #6f6f6f;
-    border: 7px solid #fff;
+    border: 5px solid #fff;
     border-radius: 50%;
     z-index: 10;
-    box-shadow: 0 0 0 8px black;
+    box-shadow: 0 0 0 5px black;
     animation: blink .5s alternate 7;
     transition: all 125ms ease-in-out;
 
     @keyframes blink {
         from { background: #eee;}
         to { background: #e74c3c; }
+    }
+
+    @media(max-width:767px) {
+        width: 20px;
+        height: 20px;
+        top: calc(50% - 10px);
+        left: calc(50% - 10px);
+        box-shadow: 0 0 0 4px black;
+        border: 3px solid #fff;
     }
 `

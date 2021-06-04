@@ -5,7 +5,8 @@ export const FlexContainerRow = styled.div`
     align-items: center;
     justify-content: space-between;
 
-    width: 70rem;
+    width: 90vw;
+    flex-wrap: wrap;
 
     .pokeball-container {
         display: flex;
@@ -20,6 +21,18 @@ export const FlexContainerRow = styled.div`
             display: inline-block;
         }
     }
+
+    @media(max-width:767px) {
+
+
+        .pokeball-container {
+            flex-basis: 32%;
+            margin-bottom: 1.5rem;
+        p {
+            
+        }
+    }
+    }
 `;
 
 export const FlexContainerColumn = styled(FlexContainerRow)`
@@ -27,16 +40,20 @@ export const FlexContainerColumn = styled(FlexContainerRow)`
     justify-content: center;
 
     width: 100vw;
-    height: 100vh;
+    height: 80vh;
 
     h1 {
         display: inline-block;
-        margin-bottom: 45px;
+        margin-bottom: 3rem;
     }
 
     .profile-home {
         position: absolute;
         top: 15px;
         right: 15px;
+    }
+
+    @media(max-width:767px) {
+        height: 73vh;
     }
 `;

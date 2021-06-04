@@ -81,7 +81,7 @@ export const Container = styled.div`
             border: solid 3px #5ebe9e;
         }
 
-        > span {
+        > div {
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -122,8 +122,14 @@ export const Container = styled.div`
                 }
             }
 
-            img {
-                margin-right: 10px;
+            .profile-info {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                img {
+                    margin-right: 10px;
+                }
             }
         }
 
@@ -145,12 +151,15 @@ export const Container = styled.div`
 
             h1 {
                 font-size: 21px;
-                padding-top: 5px;
+                padding-top: 9px;
             }
 
             > a {
                 top: 0;
                 left: 0;
+                position: absolute;
+                height: fit-content;
+                padding-top: 4px;
             }
 
             .input-container {
@@ -165,7 +174,7 @@ export const Container = styled.div`
                 }
             }
 
-            > span {
+            > div {
                 font-size: 0;
                 padding-top: 0.3rem;
 
@@ -174,7 +183,7 @@ export const Container = styled.div`
                 }
 
                 img {
-                    width: 43px;
+                    display: none;
                 }
             }
         }

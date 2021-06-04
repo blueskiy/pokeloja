@@ -48,7 +48,7 @@ export function Header(props) {
                             size="30"
                         /> */}
                     </div>
-                    <span>
+                    <div className="bag-profile">
                         <span onClick={toggleCart} className="bag-icon">
                             <GiSchoolBag
                                 color="white"
@@ -60,9 +60,11 @@ export function Header(props) {
                                 </span> : ''
                             }
                         </span>
-                        {session ? <img src={session.user.image} alt="profile image" /> : ''}
-                        {session ? `Olá, ${session.user.name}` : 'Olá, treinador(a)!'}
-                    </span>
+                        <div className="profile-info">
+                            {session ? <img src={session.user.image} alt="profile image" /> : ''}
+                            {session ? `Olá, ${session.user.name}` : 'Olá, treinador(a)!'}
+                        </div>
+                    </div>
                     <SignInButton />
                 </div>
 
