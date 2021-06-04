@@ -68,7 +68,9 @@ export function PokemonCard({ id, name, price, url }: PokemonCardProps) {
                 </PokemonImage>
                 <PokemonInfo>
                     <p>{nameCapitalized}</p>
-                    <span>{`R$${price},00`}</span>
+                    <span>
+                        {nameCapitalized === 'Pidgey' ? 'R$9.999.999,00' : `R$${price},00`}
+                    </span>
                 </PokemonInfo>
                 <AddToCartButton
                     type="button"
