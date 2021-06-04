@@ -110,6 +110,7 @@ export function Cart({ isCartOpen, toggleCart, cartPokemon }: CartProps) {
       </div>
 
       <Modal
+        closeTimeoutMS={200}
         isOpen={modalIsOpen}
         onRequestClose={toggleModal}
         style={customStyles}

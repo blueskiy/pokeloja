@@ -82,6 +82,7 @@ export function PokemonCard({ id, name, price, url }: PokemonCardProps) {
                 </AddToCartButton>
             </PokemonContainer>
             <Modal
+                closeTimeoutMS={200}
                 isOpen={modalIsOpen}
                 onRequestClose={toggleModal}
                 style={customStyles}
