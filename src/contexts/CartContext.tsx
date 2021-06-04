@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useContext, useState } from 'react'
-import { getStoragedItem, setItemOnLocalStorage } from '../helpers/storage'
+import { getStoragedItem, removeItemOnLocalStorage, setItemOnLocalStorage } from '../helpers/storage'
 import { Pokemon, AddPokemon } from '../interfaces/interfaces'
 import { api } from '../services/api'
 
@@ -17,6 +17,7 @@ interface CartContextData {
     addPokemon: ({ }: AddPokemon) => void
     removePokemon: (uniquePokemonId: string) => void
     updatePokemonAmount: ({ pokemonId, amount }: UpdatePokemonAmount) => void
+    finalizePurchase: () => void
 }
 
 const CartContext = createContext<CartContextData>({} as CartContextData)
@@ -79,8 +80,6 @@ export default function CartProvider({ children }: CartProviderProps): JSX.Eleme
             return pokemon.uniquePokemonId === uniquePokemonId
         })
 
-        console.log(pokemonIndex)
-
         if (pokemonIndex >= 0) {
             updatedCart.splice(pokemonIndex, 1)
             setCart(updatedCart)
@@ -92,13 +91,19 @@ export default function CartProvider({ children }: CartProviderProps): JSX.Eleme
 
     }
 
+    const finalizePurchase = () => {
+        setCart([])
+        removeItemOnLocalStorage('@Pokeloja:cart')
+    }
+
     return (
         <CartContext.Provider
             value={{
                 cart,
                 addPokemon,
                 removePokemon,
-                updatePokemonAmount
+                updatePokemonAmount,
+                finalizePurchase
             }}
         >
             {children}

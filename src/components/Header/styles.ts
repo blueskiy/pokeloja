@@ -1,9 +1,8 @@
 import styled from 'styled-components';
+import { flexBetween, flexCenter } from '../../styles/_mixins';
 
 export const Container = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    ${flexCenter}
 
     height: 100px;
     position: sticky;
@@ -15,9 +14,7 @@ export const Container = styled.div`
     background-color: ${props => props.theme.colors.primary};
 
     .header-main-content {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        ${flexBetween}
 
         position: relative;
         width: 100%;
@@ -58,8 +55,8 @@ export const Container = styled.div`
                 border: none;
                 border-radius: 4px;
                 padding: 10px;
-                width: 40vw;
-                max-width: 500px;
+                width: 30vw;
+                max-width: 100%;
 
                 &:focus {
                     outline: none;
@@ -82,16 +79,12 @@ export const Container = styled.div`
         }
 
         > div {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            ${flexBetween}
 
             color: #FFF;
 
             .bag-icon {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
+                ${flexBetween}
                 
                 cursor: pointer;
                 margin-right: 15px;
@@ -103,9 +96,7 @@ export const Container = styled.div`
                 }
 
                 .pokemon-count {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
+                    ${flexCenter}
                     
                     left: 0;
                     bottom: -5px;
@@ -123,9 +114,7 @@ export const Container = styled.div`
             }
 
             .profile-info {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
+                ${flexBetween}
 
                 img {
                     margin-right: 10px;
@@ -139,7 +128,13 @@ export const Container = styled.div`
         }
     }
 
-    @media(max-width: 767px) {
+    @media(max-width: 1024px) {
+        h1 {
+            font-size: 1.6rem;
+        }
+    }
+
+    @media(max-width: 768px) {
         height: 115px;
         padding: 12px 1.1rem;
 
@@ -167,7 +162,7 @@ export const Container = styled.div`
                 bottom: 10px;
                 left: 50%;
                 transform: translateX(-50%);
-                width: 93vw;
+                width: 96vw;
 
                 input {
                     width: 100%;

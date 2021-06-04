@@ -1,18 +1,15 @@
 import styled from 'styled-components';
+import { flexBetween } from '../_mixins';
 
 export const FlexContainerRow = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    ${flexBetween}
 
     width: 90vw;
     flex-wrap: wrap;
 
     .pokeball-container {
-        display: flex;
-        align-items: center;
+        ${flexBetween}
         flex-direction: column;
-        justify-content: space-between;
 
         p {
             font-size: 25px;
@@ -22,7 +19,7 @@ export const FlexContainerRow = styled.div`
         }
     }
 
-    @media(max-width:767px) {
+    @media(max-width:768px) {
 
 
         .pokeball-container {
@@ -47,13 +44,7 @@ export const FlexContainerColumn = styled(FlexContainerRow)`
         margin-bottom: 3rem;
     }
 
-    .profile-home {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-    }
-
-    @media(max-width:767px) {
+    @media(max-width:768px) {
         height: 73vh;
     }
 `;

@@ -20,9 +20,6 @@ export default function OnBoarding() {
             </Head>
 
             <FlexContainerColumn>
-                <div className="profile-home">
-                    <SignInButton />
-                </div>
                 <h1>Escolha sua Pokéloja</h1>
                 <FlexContainerRow>
                     <div className="pokeball-container">

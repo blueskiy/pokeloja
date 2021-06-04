@@ -1,11 +1,10 @@
 import styled from 'styled-components'
+import { flexBetween, flexCenter } from '../../styles/_mixins';
 
 export const Container = styled.div`
     .cart {
-        display: flex;
+        ${flexBetween}
         flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
 
         width: 30vw;
         max-width: 430px;
@@ -55,9 +54,7 @@ export const Container = styled.div`
                 position: relative;
 
                 .item-right-container {
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
+                    ${flexBetween}
 
                     position: absolute;
                     right: 15px;
@@ -69,9 +66,7 @@ export const Container = styled.div`
                     }
 
                     .trash-icon {
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
+                        ${flexCenter}
                         cursor: pointer;
                     }
                 }
@@ -85,9 +80,7 @@ export const Container = styled.div`
             width: 100%;
 
             .cart-amount {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
+                ${flexBetween}
                 padding: 10px 15px;
                 background: #FFF;
                 border-top: 1px solid #eee;
@@ -115,10 +108,15 @@ export const Container = styled.div`
                 &:focus {
                     outline: none;
                 }
+
+                &:disabled {
+                    cursor: not-allowed;
+                    background: #aaa;
+                }
             }
         }
         
-        @media(max-width: 767px) {
+        @media(max-width: 768px) {
             width: 100vw;
             right: -100vw;
         }

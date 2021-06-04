@@ -1,15 +1,15 @@
 import styled from 'styled-components'
+import { flexCenter } from '../../styles/_mixins';
 
 export const CatalogContainer = styled.main`
-    display: flex;
+    ${flexCenter}
     flex-wrap: wrap;
-    justify-content: center;
 
     width: 92vw;
     margin: 0 auto;
     max-width: 1260px;
 
-    @media(max-width:767px) {
+    @media(max-width:768px) {
         width: 97vw;
     }
 `;

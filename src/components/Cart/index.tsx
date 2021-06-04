@@ -9,28 +9,29 @@ import Modal from 'react-modal'
 import { Container, customStyles } from './styles'
 import { MdClose } from 'react-icons/md'
 import { BsTrash } from 'react-icons/bs'
-import { api } from '../../services/api'
 
 Modal.setAppElement('#__next')
 
 interface CartProps {
   isCartOpen: boolean
   toggleCart: () => void
-  cart: Pokemon[]
+  cartPokemon: Pokemon[]
 }
 
-export function Cart({ isCartOpen, toggleCart, cart }: CartProps) {
+export function Cart({ isCartOpen, toggleCart, cartPokemon }: CartProps) {
   const [cartTotal, setCartTotal] = useState(0)
   const [modalIsOpen, setIsOpen] = useState(false)
 
-  const { removePokemon } = useCart()
+  const { cart, removePokemon, finalizePurchase } = useCart()
+  const cartSize = cart.length
 
-  function openModal() {
-    setIsOpen(true)
+  function toggleModal() {
+    setIsOpen(!modalIsOpen)
   }
 
-  function closeModal() {
-    setIsOpen(false)
+  function purchasePokemon() {
+    toggleModal()
+    finalizePurchase()
   }
 
   useEffect(() => {
@@ -43,7 +44,7 @@ export function Cart({ isCartOpen, toggleCart, cart }: CartProps) {
     } else {
       setCartTotal(0)
     }
-  }, [cart])
+  }, [cartPokemon])
 
   return (
     <Container>
@@ -56,9 +57,9 @@ export function Cart({ isCartOpen, toggleCart, cart }: CartProps) {
         <span className="cart-title">MOCHILA</span>
         <div className="cart-content">
           {
-            cart === null
+            cartPokemon === null
               ? ''
-              : cart.map((pokemon) => {
+              : cartPokemon.map((pokemon) => {
                 const nameCapitalized = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)
 
                 return (
@@ -97,9 +98,11 @@ export function Cart({ isCartOpen, toggleCart, cart }: CartProps) {
             <span className="amount-title">TOTAL</span>
             <span className="amount-value">R${cartTotal},00</span>
           </div>
-          <button className="checkout-button"
+          <button
+            className={cartSize > 0 ? "checkout-button" : "checkout-button disabled"}
+            disabled={cartSize > 0 ? false : true}
             type="button"
-            onClick={openModal}
+            onClick={purchasePokemon}
           >
             FINALIZAR
           </button>
@@ -108,7 +111,7 @@ export function Cart({ isCartOpen, toggleCart, cart }: CartProps) {
 
       <Modal
         isOpen={modalIsOpen}
-        onRequestClose={closeModal}
+        onRequestClose={toggleModal}
         style={customStyles}
         contentLabel="Modal de Compra Finalizada"
       >

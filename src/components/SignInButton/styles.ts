@@ -5,14 +5,14 @@ export const SignInButtonStyled = styled.button`
     border: none;
     padding: 10px;
     border-radius: 3px;
-    background: #4d54dd;
-    transition: all 100ms ease-in-out;
+    background: ${props => props.theme.colors.buttonBackground};
+    transition: opacity 100ms ease-in-out;
 
     &:hover {
-        background: #464ff8;
+        opacity: 0.9;
     }
 
-    @media(max-width:767px) {
+    @media(max-width:768px) {
         display: none;
     }
 `;

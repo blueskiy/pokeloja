@@ -14,7 +14,7 @@ export function SignInButton() {
         <SignInButtonStyled
             onClick={() => signIn('github')}
         >
-            Sign in
+            Sign in with GitHub
         </SignInButtonStyled>
     )
 }

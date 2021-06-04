@@ -10,7 +10,6 @@ import { Cart } from '../Cart/index'
 import { IconContext } from 'react-icons'
 import { GiSchoolBag } from 'react-icons/gi'
 import { BsArrowLeft } from 'react-icons/bs'
-import { CgPokemon } from 'react-icons/cg'
 
 import { Container } from './styles'
 import { SignInButton } from '../SignInButton'
@@ -43,10 +42,6 @@ export function Header(props) {
                             onChange={e => props.setSearch(e.target.value)}
                             placeholder="busque aqui seu pokemon"
                         />
-                        {/* <CgPokemon
-                            color="#ccc"
-                            size="30"
-                        /> */}
                     </div>
                     <div className="bag-profile">
                         <span onClick={toggleCart} className="bag-icon">
@@ -71,7 +66,7 @@ export function Header(props) {
                 <Cart
                     toggleCart={toggleCart}
                     isCartOpen={isCartOpen}
-                    cart={cart}
+                    cartPokemon={cart}
                 />
             </IconContext.Provider>
         </Container>

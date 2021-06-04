@@ -51,7 +51,7 @@ export const PokeballStyle = styled.div`
         100% { transform: translate(0, 0) rotate(0); }
     }
 
-    @media(max-width:767px) {
+    @media(max-width:768px) {
         width: 75px;
         height: 75px;
     }
@@ -76,7 +76,7 @@ export const PokeballButton = styled.div`
         to { background: #e74c3c; }
     }
 
-    @media(max-width:767px) {
+    @media(max-width:768px) {
         width: 20px;
         height: 20px;
         top: calc(50% - 10px);
