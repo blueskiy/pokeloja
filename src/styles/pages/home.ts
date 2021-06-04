@@ -39,6 +39,7 @@ export const FlexContainerColumn = styled(FlexContainerRow)`
 
     width: 100vw;
     height: 80vh;
+    max-width: unset;
 
     h1 {
         display: inline-block;
