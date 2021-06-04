@@ -33,6 +33,12 @@ export function PokemonCard({ id, name, price, url }: PokemonCardProps) {
         setIsOpen(!modalIsOpen)
     }
 
+    function autoToggleModal() {
+        setTimeout(() => {
+            setIsOpen(!modalIsOpen)
+        }, 1500);
+    }
+
     function getPokemonImage() {
         const imageURL = 'https://pokeres.bastionbot.org/images/pokemon/'
 
@@ -84,6 +90,7 @@ export function PokemonCard({ id, name, price, url }: PokemonCardProps) {
                 </AddToCartButton>
             </PokemonContainer>
             <Modal
+                onAfterOpen={autoToggleModal}
                 closeTimeoutMS={200}
                 isOpen={modalIsOpen}
                 onRequestClose={toggleModal}
