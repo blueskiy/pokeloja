@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from 'react'
+import { Dispatch, useEffect, useState } from 'react'
 import Image from 'next/image'
 import { getStoragedItem } from '../../helpers/storage'
 import { Pokemon } from '../../interfaces/interfaces'
@@ -9,24 +9,39 @@ import Modal from 'react-modal'
 import { Container, customStyles } from './styles'
 import { MdClose } from 'react-icons/md'
 import { BsTrash } from 'react-icons/bs'
+import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
 
 Modal.setAppElement('#__next')
 
 interface CartProps {
-  isCartOpen: boolean
   toggleCart: () => void
   cartPokemon: Pokemon[]
+  isCartOpen: boolean
+  setIsCartOpen: Dispatch<React.SetStateAction<boolean>>
 }
 
-export function Cart({ isCartOpen, toggleCart, cartPokemon }: CartProps) {
+export function Cart({ toggleCart, cartPokemon, isCartOpen, setIsCartOpen }: CartProps) {
   const [cartTotal, setCartTotal] = useState(0)
   const [modalIsOpen, setIsOpen] = useState(false)
 
-  const { cart, removePokemon, finalizePurchase } = useCart()
+  const {
+    cart,
+    removePokemon,
+    finalizePurchase,
+    handlePokemonIncrement,
+    handlePokemonDecrement
+  } = useCart()
   const cartSize = cart.length
 
   function toggleModal() {
     setIsOpen(!modalIsOpen)
+  }
+
+  function autoToggleModal() {
+    setTimeout(() => {
+      setIsOpen(!modalIsOpen)
+      setIsCartOpen(false)
+    }, 2200);
   }
 
   function purchasePokemon() {
@@ -38,13 +53,26 @@ export function Cart({ isCartOpen, toggleCart, cartPokemon }: CartProps) {
     const pokemonOnCart = JSON.parse(getStoragedItem('@Pokeloja:cart'))
 
     if (pokemonOnCart !== null && pokemonOnCart.length > 0) {
-      const cartSum = pokemonOnCart.reduce((a: Pokemon, b: Pokemon) => ({ price: a.price + b.price * b.amount }))
+      let total = 0
+      pokemonOnCart.forEach((pokemon) => {
+        total = total + pokemon.price
+      })
 
-      setCartTotal(cartSum.price)
+      setCartTotal(total)
     } else {
       setCartTotal(0)
     }
-  }, [cartPokemon])
+  }, [cartPokemon, cartPokemon.map(pokemon => pokemon.amount)])
+
+  useEffect(() => {
+    if (window.innerWidth > 768) {
+      return
+    }
+
+    isCartOpen === true
+      ? document.body.style.overflow = 'hidden'
+      : document.body.style.overflow = 'auto'
+  }, [isCartOpen])
 
   return (
     <Container>
@@ -78,14 +106,32 @@ export function Cart({ isCartOpen, toggleCart, cartPokemon }: CartProps) {
                       <span className="item-price">
                         R${pokemon.price},00
                       </span>
-                      <div
-                        className="trash-icon"
-                        onClick={e => removePokemon(pokemon.uniquePokemonId)}
-                      >
-                        <BsTrash
-                          size="15"
-                          color="black"
-                        />
+                      <div className="cart-handles">
+                        <div className="quantity-handles">
+                          <div>
+                            <IoIosArrowUp
+                              size="15"
+                              color="black"
+                              onClick={e => handlePokemonIncrement(pokemon.uniquePokemonId)}
+                            />
+                          </div>
+                          <div>
+                            <IoIosArrowDown
+                              size="15"
+                              color="black"
+                              onClick={e => handlePokemonDecrement(pokemon.uniquePokemonId)}
+                            />
+                          </div>
+                        </div>
+                        <div
+                          className="trash-icon"
+                          onClick={e => removePokemon(pokemon.uniquePokemonId)}
+                        >
+                          <BsTrash
+                            size="15"
+                            color="black"
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -110,13 +156,14 @@ export function Cart({ isCartOpen, toggleCart, cartPokemon }: CartProps) {
       </div>
 
       <Modal
+        onAfterOpen={autoToggleModal}
         closeTimeoutMS={200}
         isOpen={modalIsOpen}
         onRequestClose={toggleModal}
         style={customStyles}
         contentLabel="Modal de Compra Finalizada"
       >
-        Obrigado!!!
+        Muito obrigado, treinador! Boa sorte em sua jornada!
       </Modal>
     </Container>
   )

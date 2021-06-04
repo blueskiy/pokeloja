@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useSession } from 'next-auth/client'
 
-import { useState, useEffect, useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { useCart } from '../../contexts/CartContext'
 import { MyThemeContext } from '../../contexts/ThemeContext'
 
@@ -65,8 +65,9 @@ export function Header(props) {
 
                 <Cart
                     toggleCart={toggleCart}
-                    isCartOpen={isCartOpen}
                     cartPokemon={cart}
+                    isCartOpen={isCartOpen}
+                    setIsCartOpen={setIsCartOpen}
                 />
             </IconContext.Provider>
         </Container>

@@ -7,16 +7,12 @@ interface CartProviderProps {
     children: ReactNode
 }
 
-interface UpdatePokemonAmount {
-    pokemonId: number
-    amount: number
-}
-
 interface CartContextData {
     cart: Pokemon[]
     addPokemon: ({ }: AddPokemon) => void
     removePokemon: (uniquePokemonId: string) => void
-    updatePokemonAmount: ({ pokemonId, amount }: UpdatePokemonAmount) => void
+    handlePokemonIncrement: (uniquePokemonId: string) => void
+    handlePokemonDecrement: (uniquePokemonId: string) => void
     finalizePurchase: () => void
 }
 
@@ -74,6 +70,36 @@ export default function CartProvider({ children }: CartProviderProps): JSX.Eleme
         setItemOnLocalStorage('@Pokeloja:cart', JSON.stringify(updatedCart))
     }
 
+    const handlePokemonIncrement = (uniquePokemonId: string) => {
+        const updatedCart = [...cart]
+        const pokemonFind = updatedCart.find((pokemon: any) => {
+            return pokemon.uniquePokemonId === uniquePokemonId
+        })
+
+        pokemonFind.price = pokemonFind.price + (pokemonFind.price / pokemonFind.amount)
+        pokemonFind.amount = pokemonFind.amount + 1
+
+        setCart(updatedCart)
+        setItemOnLocalStorage('@Pokeloja:cart', JSON.stringify(updatedCart))
+    }
+
+    const handlePokemonDecrement = (uniquePokemonId: string) => {
+        const updatedCart = [...cart]
+        const pokemonFind = updatedCart.find((pokemon: any) => {
+            return pokemon.uniquePokemonId === uniquePokemonId
+        })
+
+        if (pokemonFind.amount === 1) {
+            return
+        }
+
+        pokemonFind.price = pokemonFind.price - (pokemonFind.price / pokemonFind.amount)
+        pokemonFind.amount = pokemonFind.amount - 1
+
+        setCart(updatedCart)
+        setItemOnLocalStorage('@Pokeloja:cart', JSON.stringify(updatedCart))
+    }
+
     const removePokemon = (uniquePokemonId: string) => {
         const updatedCart = [...cart]
         const pokemonIndex = updatedCart.findIndex((pokemon: any) => {
@@ -87,10 +113,6 @@ export default function CartProvider({ children }: CartProviderProps): JSX.Eleme
         }
     }
 
-    const updatePokemonAmount = ({ pokemonId, amount }: UpdatePokemonAmount) => {
-
-    }
-
     const finalizePurchase = () => {
         setCart([])
         removeItemOnLocalStorage('@Pokeloja:cart')
@@ -102,8 +124,9 @@ export default function CartProvider({ children }: CartProviderProps): JSX.Eleme
                 cart,
                 addPokemon,
                 removePokemon,
-                updatePokemonAmount,
-                finalizePurchase
+                finalizePurchase,
+                handlePokemonIncrement,
+                handlePokemonDecrement
             }}
         >
             {children}

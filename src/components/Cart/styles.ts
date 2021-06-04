@@ -65,9 +65,23 @@ export const Container = styled.div`
                         margin-right: 15px;
                     }
 
-                    .trash-icon {
-                        ${flexCenter}
-                        cursor: pointer;
+                    .cart-handles {
+                        ${flexBetween}
+
+                        .quantity-handles {
+                            display: flex;
+                            flex-direction: column;
+                            margin-right: 10px;
+
+                            > div {
+                                cursor: pointer;
+                            }
+                        }
+
+                        .trash-icon {
+                            ${flexCenter}
+                            cursor: pointer;
+                        }
                     }
                 }
             }
@@ -127,12 +141,12 @@ export const customStyles = {
         zIndex: 3,
         backgroundColor: 'rgba(0, 0, 0, 0.6)'
     },
-    // content: {
-    //     top: '50%',
-    //     left: '50%',
-    //     right: 'auto',
-    //     bottom: 'auto',
-    //     marginRight: '-50%',
-    //     transform: 'translate(-50%, -50%)'
-    // }
+    content: {
+        top: '47%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)'
+    }
 }
