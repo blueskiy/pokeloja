@@ -76,11 +76,7 @@ export function Cart({ isCartOpen, toggleCart, cartPokemon }: CartProps) {
                     </span>
                     <div className="item-right-container">
                       <span className="item-price">
-                        {
-                          nameCapitalized === 'Pidgey'
-                            ? 'R$9.999.999,99'
-                            : `R$${pokemon.price},00`
-                        }
+                        R${pokemon.price},00
                       </span>
                       <div
                         className="trash-icon"
