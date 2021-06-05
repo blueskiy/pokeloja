@@ -65,7 +65,6 @@ export function Header(props) {
 
                 <Cart
                     toggleCart={toggleCart}
-                    cartPokemon={cart}
                     isCartOpen={isCartOpen}
                     setIsCartOpen={setIsCartOpen}
                 />

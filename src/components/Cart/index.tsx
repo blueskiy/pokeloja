@@ -1,7 +1,6 @@
 import { Dispatch, useEffect, useState } from 'react'
 import Image from 'next/image'
 import { getStoragedItem } from '../../helpers/storage'
-import { Pokemon } from '../../interfaces/interfaces'
 
 import { useCart } from '../../contexts/CartContext'
 
@@ -15,12 +14,11 @@ Modal.setAppElement('#__next')
 
 interface CartProps {
   toggleCart: () => void
-  cartPokemon: Pokemon[]
   isCartOpen: boolean
   setIsCartOpen: Dispatch<React.SetStateAction<boolean>>
 }
 
-export function Cart({ toggleCart, cartPokemon, isCartOpen, setIsCartOpen }: CartProps) {
+export function Cart({ toggleCart, isCartOpen, setIsCartOpen }: CartProps) {
   const [cartTotal, setCartTotal] = useState(0)
   const [modalIsOpen, setIsOpen] = useState(false)
 
@@ -37,7 +35,7 @@ export function Cart({ toggleCart, cartPokemon, isCartOpen, setIsCartOpen }: Car
     setIsOpen(!modalIsOpen)
   }
 
-  function autoToggleModal() {
+  function autoCloseeModal() {
     setTimeout(() => {
       setIsOpen(!modalIsOpen)
       setIsCartOpen(false)
@@ -62,7 +60,7 @@ export function Cart({ toggleCart, cartPokemon, isCartOpen, setIsCartOpen }: Car
     } else {
       setCartTotal(0)
     }
-  }, [cartPokemon, cartPokemon.map(pokemon => pokemon.amount)])
+  }, [cart, cart.map(pokemon => pokemon.amount)])
 
   useEffect(() => {
     if (window.innerWidth > 768) {
@@ -85,9 +83,9 @@ export function Cart({ toggleCart, cartPokemon, isCartOpen, setIsCartOpen }: Car
         <span className="cart-title">MOCHILA</span>
         <div className="cart-content">
           {
-            cartPokemon === null
+            cart === null
               ? ''
-              : cartPokemon.map((pokemon) => {
+              : cart.map((pokemon) => {
                 const nameCapitalized = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)
 
                 return (
@@ -156,7 +154,7 @@ export function Cart({ toggleCart, cartPokemon, isCartOpen, setIsCartOpen }: Car
       </div>
 
       <Modal
-        onAfterOpen={autoToggleModal}
+        onAfterOpen={autoCloseeModal}
         closeTimeoutMS={200}
         isOpen={modalIsOpen}
         onRequestClose={toggleModal}
