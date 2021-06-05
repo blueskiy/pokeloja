@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { useSession } from 'next-auth/client'
 
 import React, { useContext, useState } from 'react'
-import { useCart } from '../../contexts/CartContext'
+import { useCart } from '../../hooks/useCart'
 import { MyThemeContext } from '../../contexts/ThemeContext'
 
 import { Cart } from '../Cart/index'

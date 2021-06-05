@@ -2,7 +2,7 @@ import { Dispatch, useEffect, useState } from 'react'
 import Image from 'next/image'
 import { getStoragedItem } from '../../helpers/storage'
 
-import { useCart } from '../../contexts/CartContext'
+import { useCart } from '../../hooks/useCart'
 
 import Modal from 'react-modal'
 import { Container, customStyles } from './styles'

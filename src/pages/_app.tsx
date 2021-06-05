@@ -10,7 +10,7 @@ import { MyThemeProvider } from '../contexts/ThemeContext'
 import { getStoragedItem, removeItemOnLocalStorage, setItemOnLocalStorage } from '../helpers/storage'
 
 const CartProvider = dynamic(
-    () => import('../contexts/CartContext'),
+    () => import('../hooks/useCart'),
     { ssr: false }
 )
 

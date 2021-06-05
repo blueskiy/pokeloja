@@ -7,7 +7,7 @@ import {
     customStyles
 } from "./styles"
 
-import { useCart } from '../../contexts/CartContext'
+import { useCart } from '../../hooks/useCart'
 import { getStoragedItem } from '../../helpers/storage'
 
 import Modal from 'react-modal'
