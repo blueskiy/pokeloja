@@ -15,7 +15,7 @@ const CartProvider = dynamic(
 )
 
 function MyApp({ Component, pageProps }) {
-    const [theme, setTheme] = useState(dragon)
+    const [theme, setTheme] = useState(water)
 
     const toggleTheme = (theme: ThemeType) => () => {
         setTheme(theme)

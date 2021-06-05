@@ -14,6 +14,8 @@ import Modal from 'react-modal'
 import { CgPokemon } from 'react-icons/cg'
 import { useState } from 'react'
 
+Modal.setAppElement('#__next')
+
 interface PokemonCardProps {
     id: number
     name: string
