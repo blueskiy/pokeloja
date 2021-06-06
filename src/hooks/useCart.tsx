@@ -51,7 +51,8 @@ export default function CartProvider({ children }: CartProviderProps) {
 
         if (pokemonExistsOnCart) {
             pokemonExistsOnCart.amount = amount
-
+            setCart(updatedCart)
+            setItemOnLocalStorage('@Pokeloja:cart', JSON.stringify(updatedCart))
         } else {
             const newPokemon = {
                 uniquePokemonId,
