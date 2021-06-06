@@ -35,7 +35,6 @@ export default function CartProvider({ children }: CartProviderProps) {
             return pokemon.pokemon.name === pokemonName
         })
 
-        // const pokemonName = findPokemon.pokemon.name
         const pokemonURL = findPokemon.pokemon.url
 
         const getPokemonInfo = api.get(pokemonURL)
@@ -44,7 +43,7 @@ export default function CartProvider({ children }: CartProviderProps) {
 
         const updatedCart = [...cart]
         const pokemonExistsOnCart = updatedCart.find((pokemon) => {
-            return pokemon.uniquePokemonId === uniquePokemonId
+            return pokemon.name === pokemonName
         })
 
         const currentAmount = pokemonExistsOnCart ? pokemonExistsOnCart.amount : 0
@@ -55,7 +54,6 @@ export default function CartProvider({ children }: CartProviderProps) {
 
         } else {
             const newPokemon = {
-                // id: pokemonId,
                 uniquePokemonId,
                 name: pokemonName,
                 price,
