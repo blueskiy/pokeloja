@@ -2,24 +2,29 @@ import styled from 'styled-components'
 import { flexBetween, flexCenter } from '../../styles/_mixins';
 
 export const Container = styled.div`
+    top: 0;
+    z-index: 2;
+    width: 30vw;
+    right: -30vw;
+    height: 100vh;
+    position: fixed;
+    background-color: #FFF;
+    transition: right 500ms ease-in-out;
+
+    &.active {
+        right: 0;
+    }
+
     .cart {
         ${flexBetween}
         flex-direction: column;
 
-        width: 30vw;
         max-width: 430px;
         height: 100vh;
-        position: fixed;
         padding-top: 10px;
-        top: 0;
-        right: -30vw;
-        z-index: 2;
-        transition: all 500ms ease-in-out;
+        z-index: 3;
+        transition: height 150ms ease-in-out;
         background-color: #FFF;
-
-        &.active {
-            right: 0;
-        }
 
         > svg {
             cursor: pointer;
@@ -131,9 +136,12 @@ export const Container = styled.div`
         
         @media(max-width: 768px) {
             height: 100%;
-            width: 100vw;
-            right: -100vw;
         }
+    }
+
+    @media(max-width: 768px) {
+        width: 100vw;
+        right: -100vw;
     }
 `;
 

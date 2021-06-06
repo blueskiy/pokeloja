@@ -73,8 +73,8 @@ export function Cart({ toggleCart, isCartOpen, setIsCartOpen }: CartProps) {
   }, [isCartOpen])
 
   return (
-    <Container>
-      <div className={isCartOpen ? 'cart active' : 'cart'}>
+    <Container className={isCartOpen ? 'cart-container active' : 'cart-cotainer'}>
+      <div className="cart">
         <MdClose
           onClick={toggleCart}
           size="30"
