@@ -50,9 +50,13 @@ export default function CartProvider({ children }: CartProviderProps) {
         const amount = currentAmount + 1
 
         if (pokemonExistsOnCart) {
+            pokemonExistsOnCart.price =
+                pokemonExistsOnCart.price +
+                (pokemonExistsOnCart.price / pokemonExistsOnCart.amount)
+                
             pokemonExistsOnCart.amount = amount
-            setCart(updatedCart)
-            setItemOnLocalStorage('@Pokeloja:cart', JSON.stringify(updatedCart))
+            // setCart(updatedCart)
+            // setItemOnLocalStorage('@Pokeloja:cart', JSON.stringify(updatedCart))
         } else {
             const newPokemon = {
                 uniquePokemonId,

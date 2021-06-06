@@ -52,7 +52,6 @@ export function PokemonCard({ id, name, price, url }: PokemonCardProps) {
         const uniquePokemonId = `${storeType}_${id}`
 
         const pokemonToAdd = {
-            pokemonId: id,
             uniquePokemonId,
             pokemonName: name,
             price
