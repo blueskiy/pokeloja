@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext, useState } from 'react'
 import { getStoragedItem, removeItemOnLocalStorage, setItemOnLocalStorage } from '../helpers/storage'
-import { Pokemon, AddPokemon } from '../interfaces/interfaces'
+import { Pokemon, AddPokemon, CatalogPokemon } from '../interfaces/interfaces'
 import { api } from '../services/api'
 
 interface CartProviderProps {
@@ -18,7 +18,7 @@ interface CartContextData {
 
 const CartContext = createContext<CartContextData>({} as CartContextData)
 
-export default function CartProvider({ children }: CartProviderProps): JSX.Element {
+export default function CartProvider({ children }: CartProviderProps) {
     const [cart, setCart] = useState<Pokemon[]>(() => {
         const storagedCart = getStoragedItem('@Pokeloja:cart')
 
@@ -29,13 +29,12 @@ export default function CartProvider({ children }: CartProviderProps): JSX.Eleme
         return []
     })
 
-    const addPokemon = async ({ pokemonId, uniquePokemonId, price }: AddPokemon) => {
+    const addPokemon = async ({ uniquePokemonId, pokemonName, price }: AddPokemon) => {
         const pokemonList = JSON.parse(getStoragedItem('@Pokemon:list'))
-        const findPokemon = pokemonList.find((pokemon: any, index: number) => {
-            return index === pokemonId
+        const findPokemon = pokemonList.find((pokemon: CatalogPokemon) => {
+            return pokemon.pokemon.name === pokemonName
         })
 
-        const pokemonName = findPokemon.pokemon.name
         const pokemonURL = findPokemon.pokemon.url
 
         const getPokemonInfo = api.get(pokemonURL)
@@ -44,18 +43,20 @@ export default function CartProvider({ children }: CartProviderProps): JSX.Eleme
 
         const updatedCart = [...cart]
         const pokemonExistsOnCart = updatedCart.find((pokemon) => {
-            return pokemon.uniquePokemonId === uniquePokemonId
+            return pokemon.name === pokemonName
         })
 
         const currentAmount = pokemonExistsOnCart ? pokemonExistsOnCart.amount : 0
         const amount = currentAmount + 1
 
         if (pokemonExistsOnCart) {
+            pokemonExistsOnCart.price =
+                pokemonExistsOnCart.price +
+                (pokemonExistsOnCart.price / pokemonExistsOnCart.amount)
+                
             pokemonExistsOnCart.amount = amount
-
         } else {
             const newPokemon = {
-                id: pokemonId,
                 uniquePokemonId,
                 name: pokemonName,
                 price,
@@ -72,7 +73,7 @@ export default function CartProvider({ children }: CartProviderProps): JSX.Eleme
 
     const handlePokemonIncrement = (uniquePokemonId: string) => {
         const updatedCart = [...cart]
-        const pokemonFind = updatedCart.find((pokemon: any) => {
+        const pokemonFind = updatedCart.find((pokemon: Pokemon) => {
             return pokemon.uniquePokemonId === uniquePokemonId
         })
 
@@ -85,7 +86,7 @@ export default function CartProvider({ children }: CartProviderProps): JSX.Eleme
 
     const handlePokemonDecrement = (uniquePokemonId: string) => {
         const updatedCart = [...cart]
-        const pokemonFind = updatedCart.find((pokemon: any) => {
+        const pokemonFind = updatedCart.find((pokemon: Pokemon) => {
             return pokemon.uniquePokemonId === uniquePokemonId
         })
 
@@ -102,7 +103,7 @@ export default function CartProvider({ children }: CartProviderProps): JSX.Eleme
 
     const removePokemon = (uniquePokemonId: string) => {
         const updatedCart = [...cart]
-        const pokemonIndex = updatedCart.findIndex((pokemon: any) => {
+        const pokemonIndex = updatedCart.findIndex((pokemon: Pokemon) => {
             return pokemon.uniquePokemonId === uniquePokemonId
         })
 

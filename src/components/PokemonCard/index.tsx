@@ -7,12 +7,14 @@ import {
     customStyles
 } from "./styles"
 
-import { useCart } from '../../contexts/CartContext'
+import { useCart } from '../../hooks/useCart'
 import { getStoragedItem } from '../../helpers/storage'
 
 import Modal from 'react-modal'
 import { CgPokemon } from 'react-icons/cg'
 import { useState } from 'react'
+
+Modal.setAppElement('#__next')
 
 interface PokemonCardProps {
     id: number
@@ -50,8 +52,8 @@ export function PokemonCard({ id, name, price, url }: PokemonCardProps) {
         const uniquePokemonId = `${storeType}_${id}`
 
         const pokemonToAdd = {
-            pokemonId: id,
             uniquePokemonId,
+            pokemonName: name,
             price
         }
 
