@@ -1,13 +1,9 @@
+import { CatalogPokemon } from "../../interfaces/interfaces"
 import { PokemonCard } from "../PokemonCard"
 import { CatalogContainer } from "./styles"
 
 interface CatalogResultsProps {
-    cards: {
-        pokemon: {
-            name: string
-            url: string
-        }
-    }[]
+    cards: CatalogPokemon[]
 }
 
 export function CatalogResults({ cards }: CatalogResultsProps) {

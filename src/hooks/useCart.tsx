@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext, useState } from 'react'
 import { getStoragedItem, removeItemOnLocalStorage, setItemOnLocalStorage } from '../helpers/storage'
-import { Pokemon, AddPokemon } from '../interfaces/interfaces'
+import { Pokemon, AddPokemon, CatalogPokemon } from '../interfaces/interfaces'
 import { api } from '../services/api'
 
 interface CartProviderProps {
@@ -31,7 +31,7 @@ export default function CartProvider({ children }: CartProviderProps) {
 
     const addPokemon = async ({ uniquePokemonId, pokemonName, price }: AddPokemon) => {
         const pokemonList = JSON.parse(getStoragedItem('@Pokemon:list'))
-        const findPokemon = pokemonList.find((pokemon: any) => {
+        const findPokemon = pokemonList.find((pokemon: CatalogPokemon) => {
             return pokemon.pokemon.name === pokemonName
         })
 
@@ -73,7 +73,7 @@ export default function CartProvider({ children }: CartProviderProps) {
 
     const handlePokemonIncrement = (uniquePokemonId: string) => {
         const updatedCart = [...cart]
-        const pokemonFind = updatedCart.find((pokemon: any) => {
+        const pokemonFind = updatedCart.find((pokemon: Pokemon) => {
             return pokemon.uniquePokemonId === uniquePokemonId
         })
 
@@ -86,7 +86,7 @@ export default function CartProvider({ children }: CartProviderProps) {
 
     const handlePokemonDecrement = (uniquePokemonId: string) => {
         const updatedCart = [...cart]
-        const pokemonFind = updatedCart.find((pokemon: any) => {
+        const pokemonFind = updatedCart.find((pokemon: Pokemon) => {
             return pokemon.uniquePokemonId === uniquePokemonId
         })
 
@@ -103,7 +103,7 @@ export default function CartProvider({ children }: CartProviderProps) {
 
     const removePokemon = (uniquePokemonId: string) => {
         const updatedCart = [...cart]
-        const pokemonIndex = updatedCart.findIndex((pokemon: any) => {
+        const pokemonIndex = updatedCart.findIndex((pokemon: Pokemon) => {
             return pokemon.uniquePokemonId === uniquePokemonId
         })
 

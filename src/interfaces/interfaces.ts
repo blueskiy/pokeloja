@@ -1,3 +1,10 @@
+export interface CatalogPokemon {
+    pokemon: {
+        name: string
+        url: string
+    }
+}
+
 export interface Pokemon {
     uniquePokemonId: string
     name: string
