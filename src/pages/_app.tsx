@@ -10,12 +10,12 @@ import { MyThemeProvider } from '../contexts/ThemeContext'
 import { getStoragedItem, removeItemOnLocalStorage, setItemOnLocalStorage } from '../helpers/storage'
 
 const CartProvider = dynamic(
-    () => import('../contexts/CartContext'),
+    () => import('../hooks/useCart'),
     { ssr: false }
 )
 
 function MyApp({ Component, pageProps }) {
-    const [theme, setTheme] = useState(dragon)
+    const [theme, setTheme] = useState(water)
 
     const toggleTheme = (theme: ThemeType) => () => {
         setTheme(theme)
