@@ -14,7 +14,7 @@ export const Container = styled.div`
         top: 0;
         right: -30vw;
         z-index: 2;
-        transition: right 500ms ease-in-out;
+        transition: all 500ms ease-in-out;
         background-color: #FFF;
 
         &.active {
