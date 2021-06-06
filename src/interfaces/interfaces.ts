@@ -1,5 +1,4 @@
 export interface Pokemon {
-    id: number
     uniquePokemonId: string
     name: string
     price: number
@@ -8,7 +7,7 @@ export interface Pokemon {
 }
 
 export interface AddPokemon {
-    pokemonId: number
     uniquePokemonId: string
+    pokemonName: string
     price: number
 }

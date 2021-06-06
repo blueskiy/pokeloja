@@ -29,13 +29,13 @@ export default function CartProvider({ children }: CartProviderProps) {
         return []
     })
 
-    const addPokemon = async ({ pokemonId, uniquePokemonId, price }: AddPokemon) => {
+    const addPokemon = async ({ uniquePokemonId, pokemonName, price }: AddPokemon) => {
         const pokemonList = JSON.parse(getStoragedItem('@Pokemon:list'))
-        const findPokemon = pokemonList.find((pokemon: any, index: number) => {
-            return index === pokemonId
+        const findPokemon = pokemonList.find((pokemon: any) => {
+            return pokemon.pokemon.name === pokemonName
         })
 
-        const pokemonName = findPokemon.pokemon.name
+        // const pokemonName = findPokemon.pokemon.name
         const pokemonURL = findPokemon.pokemon.url
 
         const getPokemonInfo = api.get(pokemonURL)
@@ -55,7 +55,7 @@ export default function CartProvider({ children }: CartProviderProps) {
 
         } else {
             const newPokemon = {
-                id: pokemonId,
+                // id: pokemonId,
                 uniquePokemonId,
                 name: pokemonName,
                 price,
