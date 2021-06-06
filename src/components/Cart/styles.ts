@@ -130,6 +130,7 @@ export const Container = styled.div`
         }
         
         @media(max-width: 768px) {
+            height: 90vh;
             width: 100vw;
             right: -100vw;
         }

@@ -53,6 +53,7 @@ export default function CartProvider({ children }: CartProviderProps) {
             pokemonExistsOnCart.price =
                 pokemonExistsOnCart.price +
                 (pokemonExistsOnCart.price / pokemonExistsOnCart.amount)
+                
             pokemonExistsOnCart.amount = amount
         } else {
             const newPokemon = {
