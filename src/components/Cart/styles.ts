@@ -156,6 +156,7 @@ export const customStyles = {
         left: '50%',
         right: 'auto',
         bottom: 'auto',
+        maxWidth: '93vw',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)'
     }

@@ -35,7 +35,7 @@ export function Cart({ toggleCart, isCartOpen, setIsCartOpen }: CartProps) {
     setIsOpen(!modalIsOpen)
   }
 
-  function autoCloseeModal() {
+  function autoCloseModal() {
     setTimeout(() => {
       setIsOpen(!modalIsOpen)
       setIsCartOpen(false)
@@ -110,20 +110,20 @@ export function Cart({ toggleCart, isCartOpen, setIsCartOpen }: CartProps) {
                             <IoIosArrowUp
                               size="15"
                               color="black"
-                              onClick={e => handlePokemonIncrement(pokemon.uniquePokemonId)}
+                              onClick={() => handlePokemonIncrement(pokemon.uniquePokemonId)}
                             />
                           </div>
                           <div>
                             <IoIosArrowDown
                               size="15"
                               color="black"
-                              onClick={e => handlePokemonDecrement(pokemon.uniquePokemonId)}
+                              onClick={() => handlePokemonDecrement(pokemon.uniquePokemonId)}
                             />
                           </div>
                         </div>
                         <div
                           className="trash-icon"
-                          onClick={e => removePokemon(pokemon.uniquePokemonId)}
+                          onClick={() => removePokemon(pokemon.uniquePokemonId)}
                         >
                           <BsTrash
                             size="15"
@@ -154,7 +154,7 @@ export function Cart({ toggleCart, isCartOpen, setIsCartOpen }: CartProps) {
       </div>
 
       <Modal
-        onAfterOpen={autoCloseeModal}
+        onAfterOpen={autoCloseModal}
         closeTimeoutMS={200}
         isOpen={modalIsOpen}
         onRequestClose={toggleModal}

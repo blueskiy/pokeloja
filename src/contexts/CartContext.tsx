@@ -1,6 +1,22 @@
-import { createContext, ReactNode, useContext, useState } from 'react'
-import { getStoragedItem, removeItemOnLocalStorage, setItemOnLocalStorage } from '../helpers/storage'
-import { Pokemon, AddPokemon, CatalogPokemon, CartContextData } from '../interfaces/interfaces'
+import {
+    createContext,
+    ReactNode,
+    useState
+} from 'react'
+
+import {
+    getStoragedItem,
+    removeItemOnLocalStorage,
+    setItemOnLocalStorage
+} from '../helpers/storage'
+
+import {
+    Pokemon,
+    AddPokemon,
+    CatalogPokemon,
+    CartContextData
+} from '../interfaces/interfaces'
+
 import { api } from '../services/api'
 
 interface CartProviderProps {
