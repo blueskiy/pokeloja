@@ -135,7 +135,7 @@ export const Container = styled.div`
         }
         
         @media(max-width: 768px) {
-            height: 92%;
+            height: 90%;
         }
     }
 
