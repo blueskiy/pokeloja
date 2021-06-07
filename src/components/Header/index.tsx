@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useSession } from 'next-auth/client'
 
-import React, { useContext, useState } from 'react'
+import React, { Dispatch, useContext, useState } from 'react'
 import { useCart } from '../../hooks/useCart'
 import { MyThemeContext } from '../../contexts/ThemeContext'
 
@@ -14,7 +14,11 @@ import { BsArrowLeft } from 'react-icons/bs'
 import { Container } from './styles'
 import { SignInButton } from '../SignInButton'
 
-export function Header(props) {
+interface HeaderProps {
+    setSearch: Dispatch<React.SetStateAction<string>>
+}
+
+export function Header({ setSearch }: HeaderProps) {
     const [session] = useSession()
     const { persistedTheme } = useContext(MyThemeContext)
     const { cart } = useCart()
@@ -39,7 +43,7 @@ export function Header(props) {
                     <div className="input-container">
                         <input
                             type="text"
-                            onChange={e => props.setSearch(e.target.value)}
+                            onChange={e => setSearch(e.target.value)}
                             placeholder="busque aqui seu pokemon"
                         />
                     </div>

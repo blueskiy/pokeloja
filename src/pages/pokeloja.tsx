@@ -8,6 +8,7 @@ import { api } from '../services/api'
 import { Header } from '../components/Header'
 import { CatalogResults } from '../components/CatalogResults'
 import { getStoragedItem, setItemOnLocalStorage } from '../helpers/storage'
+import { CatalogPokemon } from '../interfaces/interfaces'
 
 export async function getServerSideProps(ctx) {
     const session = await getSession(ctx)
@@ -58,7 +59,7 @@ export default function Catalog() {
     const pokemonToRender = () => {
         if (getStoragedItem('@Pokemon:list')) {
             const pokemonList = JSON.parse(getStoragedItem('@Pokemon:list'))
-            const filteredPokemon = pokemonList.filter(pokemon => {
+            const filteredPokemon = pokemonList.filter((pokemon: CatalogPokemon) => {
                 return pokemon.pokemon.name.toLowerCase().includes(search.toLowerCase())
             })
 
@@ -75,7 +76,6 @@ export default function Catalog() {
                 <title>Pokéloja | {persistedTheme().title}</title>
             </Head>
             <Header
-                search={search}
                 setSearch={setSearch}
             />
             <CatalogResults cards={pokemonToRender()} />
