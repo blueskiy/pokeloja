@@ -8,6 +8,7 @@ export const Container = styled.div`
     right: -30vw;
     height: 100vh;
     position: fixed;
+    max-width: 430px;
     background-color: #FFF;
     transition: right 500ms ease-in-out;
 
