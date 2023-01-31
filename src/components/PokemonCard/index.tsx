@@ -40,7 +40,7 @@ export function PokemonCard({ id, name, price, url, pokemonId }: PokemonCardProp
     function getPokemonImage() {
         const imageURL = 'https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/'
 
-        const imageId = pokemonId.padStart(3, 0)
+        const imageId = pokemonId.padStart(3, '0')
 
         return `${imageURL + imageId}.png`
     }
