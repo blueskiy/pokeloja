@@ -1,18 +1,16 @@
+import { useState } from 'react'
+import Modal from 'react-modal'
 import Image from 'next/image'
+import { CgPokemon } from 'react-icons/cg'
+import { getStoragedItem } from '../../helpers/storage'
+import { useCart } from '../../hooks/useCart'
 import {
-    PokemonContainer,
+PokemonContainer,
     PokemonImage,
     PokemonInfo,
     AddToCartButton,
     customStyles
 } from "./styles"
-
-import { useCart } from '../../hooks/useCart'
-import { getStoragedItem } from '../../helpers/storage'
-
-import Modal from 'react-modal'
-import { CgPokemon } from 'react-icons/cg'
-import { useState } from 'react'
 
 Modal.setAppElement('#__next')
 
@@ -21,15 +19,13 @@ interface PokemonCardProps {
     name: string
     price: number
     url: string
+    pokemonId: string
 }
 
-export function PokemonCard({ id, name, price, url }: PokemonCardProps) {
+export function PokemonCard({ id, name, price, url, pokemonId }: PokemonCardProps) {
     const { addPokemon } = useCart()
-
-    const pokemonId = url.split('/')[6]
-    const nameCapitalized = name.charAt(0).toUpperCase() + name.slice(1)
-
     const [modalIsOpen, setIsOpen] = useState(false)
+    const nameCapitalized = name.charAt(0).toUpperCase() + name.slice(1)
 
     function toggleModal() {
         setIsOpen(!modalIsOpen)
@@ -42,9 +38,11 @@ export function PokemonCard({ id, name, price, url }: PokemonCardProps) {
     }
 
     function getPokemonImage() {
-        const imageURL = 'https://pokeres.bastionbot.org/images/pokemon/'
+        const imageURL = 'https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/'
 
-        return `${imageURL + pokemonId}.png`
+        const imageId = pokemonId.padStart(3, 0)
+
+        return `${imageURL + imageId}.png`
     }
 
     function handleAddPokemon(id: number) {

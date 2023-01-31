@@ -11,6 +11,11 @@ export function CatalogResults({ cards }: CatalogResultsProps) {
         <CatalogContainer>
             {cards.map((pokemon, i) => {
                 const randomPrice = Math.floor(Math.random() * 1000) + 50
+                const url = pokemon.pokemon.url
+                const pokemonId = url.split('/')[6]
+
+                //api de imagens vai só até o pokemon 905
+                if (Number(pokemonId) > 905) return null
 
                 return (
                     <PokemonCard
@@ -18,7 +23,8 @@ export function CatalogResults({ cards }: CatalogResultsProps) {
                         id={i}
                         name={pokemon.pokemon.name}
                         price={randomPrice}
-                        url={pokemon.pokemon.url}
+                        url={url}
+                        pokemonId={pokemonId}
                     />)
             })}
         </CatalogContainer>
