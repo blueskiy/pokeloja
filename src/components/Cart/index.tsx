@@ -50,6 +50,12 @@ export const Cart = ({ toggleCart, isCartOpen, setIsCartOpen }: CartProps) => {
   useEffect(() => {
     const pokemonOnCart = JSON.parse(getStoragedItem('@Pokeloja:cart'))
 
+    if (window.innerWidth < 768) {
+      isCartOpen === true
+        ? document.body.style.overflow = 'hidden'
+        : document.body.style.overflow = 'auto'
+    }
+
     if (pokemonOnCart !== null && pokemonOnCart.length > 0) {
       let total = 0
       pokemonOnCart.forEach((pokemon) => {
@@ -60,17 +66,7 @@ export const Cart = ({ toggleCart, isCartOpen, setIsCartOpen }: CartProps) => {
     } else {
       setCartTotal(0)
     }
-  }, [cart, cart.map(pokemon => pokemon.amount)])
-
-  useEffect(() => {
-    if (window.innerWidth > 768) {
-      return
-    }
-
-    isCartOpen === true
-      ? document.body.style.overflow = 'hidden'
-      : document.body.style.overflow = 'auto'
-  }, [isCartOpen])
+  }, [cart, isCartOpen, cart.map(pokemon => pokemon.amount)])
 
   return (
     <Container className={isCartOpen ? 'cart-container active' : 'cart-cotainer'}>
