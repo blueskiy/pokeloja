@@ -14,6 +14,7 @@ export const Container = styled.div`
 
     &.active {
         right: 0;
+        box-shadow: -1px 0px 16px 0px #000;
     }
 
     .cart {

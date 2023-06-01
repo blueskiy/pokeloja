@@ -18,7 +18,7 @@ interface CartProps {
   setIsCartOpen: Dispatch<React.SetStateAction<boolean>>
 }
 
-export function Cart({ toggleCart, isCartOpen, setIsCartOpen }: CartProps) {
+export const Cart = ({ toggleCart, isCartOpen, setIsCartOpen }: CartProps) => {
   const [cartTotal, setCartTotal] = useState(0)
   const [modalIsOpen, setIsOpen] = useState(false)
 
@@ -31,18 +31,18 @@ export function Cart({ toggleCart, isCartOpen, setIsCartOpen }: CartProps) {
   } = useCart()
   const cartSize = cart.length
 
-  function toggleModal() {
+  const toggleModal = () => {
     setIsOpen(!modalIsOpen)
   }
 
-  function autoCloseModal() {
+  const autoCloseModal = () => {
     setTimeout(() => {
       setIsOpen(!modalIsOpen)
       setIsCartOpen(false)
     }, 2200);
   }
 
-  function purchasePokemon() {
+  const purchasePokemon = () => {
     toggleModal()
     finalizePurchase()
   }

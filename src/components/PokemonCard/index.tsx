@@ -22,22 +22,22 @@ interface PokemonCardProps {
     pokemonId: string
 }
 
-export function PokemonCard({ id, name, price, url, pokemonId }: PokemonCardProps) {
+export const PokemonCard = ({ id, name, price, url, pokemonId }: PokemonCardProps) => {
     const { addPokemon } = useCart()
     const [modalIsOpen, setIsOpen] = useState(false)
     const nameCapitalized = name.charAt(0).toUpperCase() + name.slice(1)
 
-    function toggleModal() {
+    const toggleModal = () => {
         setIsOpen(!modalIsOpen)
     }
 
-    function autoToggleModal() {
+    const autoToggleModal = () => {
         setTimeout(() => {
             setIsOpen(!modalIsOpen)
         }, 1500);
     }
 
-    function getPokemonImage() {
+    const getPokemonImage = () => {
         const imageURL = 'https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/'
 
         const imageId = pokemonId.padStart(3, '0')
@@ -45,7 +45,7 @@ export function PokemonCard({ id, name, price, url, pokemonId }: PokemonCardProp
         return `${imageURL + imageId}.png`
     }
 
-    function handleAddPokemon(id: number) {
+    const handleAddPokemon = (id: number) => {
         const storeType = JSON.parse(getStoragedItem('@Pokeloja:tema')).storageKey
         const uniquePokemonId = `${storeType}_${id}`
 

@@ -2,6 +2,7 @@ export interface CatalogPokemon {
     pokemon: {
         name: string
         url: string
+        price: number
     }
 }
 

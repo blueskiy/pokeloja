@@ -75,7 +75,8 @@ export const Container = styled.div`
             width: 40px;
             height: auto;
             border-radius: 50%;
-            border: solid 3px #5ebe9e;
+            border: solid 2px ${props => props.theme.colors.secundary};
+            cursor: pointer;
         }
 
         > div {

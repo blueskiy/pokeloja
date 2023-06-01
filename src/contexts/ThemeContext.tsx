@@ -16,7 +16,7 @@ interface ThemeProviderProps {
     }
 }
 
-export function MyThemeProvider({ children, value }: ThemeProviderProps) {
+export const MyThemeProvider = ({ children, value }: ThemeProviderProps) => {
     const { toggleTheme, persistedTheme } = value
 
     return (

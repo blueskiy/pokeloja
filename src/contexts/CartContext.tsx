@@ -25,7 +25,7 @@ interface CartProviderProps {
 
 export const CartContext = createContext<CartContextData>({} as CartContextData)
 
-export default function CartProvider({ children }: CartProviderProps) {
+const CartProvider = ({ children }: CartProviderProps) => {
     const [cart, setCart] = useState<Pokemon[]>(() => {
         const storagedCart = getStoragedItem('@Pokeloja:cart')
 
@@ -141,3 +141,5 @@ export default function CartProvider({ children }: CartProviderProps) {
         </CartContext.Provider>
     )
 }
+
+export default CartProvider;

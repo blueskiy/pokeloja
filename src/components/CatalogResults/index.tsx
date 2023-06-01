@@ -6,11 +6,10 @@ interface CatalogResultsProps {
     cards: CatalogPokemon[]
 }
 
-export function CatalogResults({ cards }: CatalogResultsProps) {
+export const CatalogResults = ({ cards }: CatalogResultsProps) => {
     return (
         <CatalogContainer>
             {cards.map((pokemon, i) => {
-                const randomPrice = Math.floor(Math.random() * 1000) + 50
                 const url = pokemon.pokemon.url
                 const pokemonId = url.split('/')[6]
 
@@ -22,7 +21,7 @@ export function CatalogResults({ cards }: CatalogResultsProps) {
                         key={i}
                         id={i}
                         name={pokemon.pokemon.name}
-                        price={randomPrice}
+                        price={pokemon.pokemon.price}
                         url={url}
                         pokemonId={pokemonId}
                     />)

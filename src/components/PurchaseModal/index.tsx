@@ -5,7 +5,7 @@ interface PurchaseModalProps {
     onRequestClose: () => void
 }
 
-export function PurchaseModal({ isOpen, onRequestClose }: PurchaseModalProps) {
+export const PurchaseModal = ({ isOpen, onRequestClose }: PurchaseModalProps) => {
     return (
         <Modal
             isOpen={isOpen}

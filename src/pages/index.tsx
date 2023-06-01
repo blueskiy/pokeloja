@@ -8,7 +8,7 @@ import { FlexContainerColumn, FlexContainerRow } from '../styles/pages/home'
 
 import { MyThemeContext } from '../contexts/ThemeContext'
 
-export default function OnBoarding() {
+const OnBoarding = () => {
     const { toggleTheme } = useContext(MyThemeContext)
 
     return (
@@ -73,3 +73,5 @@ export default function OnBoarding() {
         </>
     )
 }
+
+export default OnBoarding;

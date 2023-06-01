@@ -1,9 +1,7 @@
 import Head from 'next/head'
-import { useState, useEffect, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { getSession } from 'next-auth/client'
-
 import { MyThemeContext } from '../contexts/ThemeContext'
-
 import { api } from '../services/api'
 import { Header } from '../components/Header'
 import { CatalogResults } from '../components/CatalogResults'
@@ -15,7 +13,8 @@ export async function getServerSideProps(ctx) {
     return ({ props: { session } })
 }
 
-export default function Catalog() {
+const Catalog = ({ session }) => {
+    console.log('session', session)
     const [pokemonCards, setPokemonCards] = useState([])
     const [search, setSearch] = useState('')
     const { persistedTheme } = useContext(MyThemeContext)
@@ -46,16 +45,6 @@ export default function Catalog() {
         }
     }
 
-    useEffect(() => {
-        api.get(`type/${requestByType()}/`)
-            .then(response => {
-                const { pokemon } = response.data
-                setPokemonCards(pokemon)
-
-                setItemOnLocalStorage('@Pokemon:list', JSON.stringify(pokemon))
-            })
-    }, [])
-
     const pokemonToRender = () => {
         if (getStoragedItem('@Pokemon:list')) {
             const pokemonList = JSON.parse(getStoragedItem('@Pokemon:list'))
@@ -70,6 +59,20 @@ export default function Catalog() {
         }
     }
 
+    useEffect(() => {
+        // console.log(JSON.parse(localStorage.getItem('@Pokemon:list')))
+        api.get(`type/${requestByType()}/`)
+            .then(response => {
+                const { pokemon } = response.data                
+                for (let i = 0; i < pokemon.length; i++) {
+                    const randomPrice = Math.floor(Math.random() * 1000) + 50
+                    pokemon[i].pokemon.price = randomPrice
+                }
+                setPokemonCards(pokemon)
+                setItemOnLocalStorage('@Pokemon:list', JSON.stringify(pokemon))
+            })
+    }, [])
+
     return (
         <>
             <Head>
@@ -82,3 +85,5 @@ export default function Catalog() {
         </>
     )
 }
+
+export default Catalog;
