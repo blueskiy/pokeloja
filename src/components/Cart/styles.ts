@@ -9,6 +9,7 @@ export const Container = styled.div`
     height: 100vh;
     position: fixed;
     max-width: 430px;
+    user-select: none;
     background-color: #FFF;
     transition: right 500ms ease-in-out;
 
